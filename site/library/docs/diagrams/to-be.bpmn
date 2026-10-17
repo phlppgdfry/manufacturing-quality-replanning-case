@@ -39,7 +39,7 @@
       <bpmn:incoming>to-be_flow_2</bpmn:incoming>
       <bpmn:outgoing>to-be_flow_3</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="to-be_g" name="Plan haalbaar?">
+    <bpmn:exclusiveGateway id="to-be_g" name="Levering tijdig?">
       <bpmn:incoming>to-be_flow_3</bpmn:incoming>
       <bpmn:outgoing>to-be_flow_4</bpmn:outgoing>
       <bpmn:outgoing>to-be_flow_6</bpmn:outgoing>

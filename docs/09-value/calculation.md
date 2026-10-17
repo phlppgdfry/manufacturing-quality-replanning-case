@@ -17,6 +17,8 @@ Automatisch afgeleid van data/case.json. Dit is een model, geen gerealiseerde be
 | 18 | € 614 | € 1.824 | € 3.638 |
 | 30 | € 1.824 | € 3.840 | € 6.864 |
 
+Fictief sponsorcriterium: terugverdienen binnen 3 jaar. Netto tijdwaarde over die periode: € 5.472 tegenover € 7.800 investering.
+
 Aanbeveling: geen maatwerk-go op tijdwaarde alleen; standaard-fit en pilot eerst. Scenario’s variëren twee factoren; dit is geen volledige investeringswaardering of financieel advies.
 
 Terug: [businesscase](business-case.md).

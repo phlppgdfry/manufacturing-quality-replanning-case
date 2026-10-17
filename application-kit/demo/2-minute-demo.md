@@ -8,4 +8,4 @@
 1:35–1:50: “Voorraad en levering zijn aparte problemen.” Toon bevestigde voorraad, maar nog vereiste nieuwe leverafspraak.
 1:50–2:00: “Regels werken; ERP, rollen en fabriek zijn gesimuleerd. UAT en uitrol zijn voorbereid.”
 
-De automatische achtstappenrondleiding is een verklarende leesroute. Ze voert geen besluiten voor de gebruiker uit; de echte handelingen kan je apart demonstreren met de taakgerichte handleiding.
+De automatische achtstappenrondleiding is een verklarende leesroute. Ze toont vooraf opgebouwde voorbeeldtoestanden zonder de eigen oefensessie te wijzigen; de echte handelingen kan je apart demonstreren met de taakgerichte handleiding.

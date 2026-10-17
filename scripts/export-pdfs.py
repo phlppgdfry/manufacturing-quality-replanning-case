@@ -27,6 +27,10 @@ for title,text in [
 ('De uitkomst','Alle voorbeeldopties missen de oorspronkelijke levering. De illustratieve tijdwaarde rechtvaardigt maatwerk niet op zichzelf. Advies: standaardonderzoek en een beperkte pilot met nulmeting.'),
 ('De grenzen','Fictieve organisatie en workshopscenario’s. Geen SAP-runtime, machinebesturing of uitgevoerde eindgebruikers-UAT. Persoonlijke beheersing moet afzonderlijk worden getoetst.')]:
  c.setFont('Helvetica-Bold',12);c.setFillColor(ACCENT);c.drawString(42,y,title);y-=10;y=para(c,text,42,y,511)
+from reportlab.lib.utils import ImageReader
+shot=R/'docs/screenshots/desktop.png'
+if shot.exists():
+ c.drawImage(ImageReader(str(shot)),145,100,width=305,height=203,mask='auto')
 c.setFillColor(MUTED);c.setFont('Helvetica',9);c.drawString(42,69,'Bronnen en detail: CASE_STUDY.md, EVIDENCE.md en data/case.json in de repository.')
 c.save()
 pages=[
@@ -42,6 +46,12 @@ for n,(title,blocks) in enumerate(pages,1):
  y=base(c,title,n,len(pages))
  for sub,text in blocks:
   c.setFont('Helvetica-Bold',13);c.setFillColor(ACCENT);c.drawString(42,y,sub);y-=13;y=para(c,text,42,y,511);y-=11
+ if n in [1,3,4,5]:
+  filename={1:'desktop.png',3:'quality-decision.png',4:'recovery-options.png',5:'erp-reconciled.png'}[n]
+  shot=R/'docs/screenshots'/filename
+  if shot.exists():
+   available=min(275,y-105); iw,ih=ImageReader(str(shot)).getSize(); width=min(511,available*iw/ih); height=width*ih/iw
+   c.drawImage(ImageReader(str(shot)),42,76,width=width,height=height,mask='auto')
  c.showPage()
 c.save()
 slides=json.loads((R/'data/slides.json').read_text());size=(960,540);c=canvas.Canvas(str(out/'deck.pdf'),pagesize=size)

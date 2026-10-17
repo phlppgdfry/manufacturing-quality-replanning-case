@@ -2,6 +2,8 @@
 
 Voor business, ERP-consultant en technische lead. Dit document onderscheidt de werkende browserdemo van het doelontwerp dat eerst op een ERP-fit-gap moet worden getoetst.
 
+[Bekijk het architectuurdiagram](../diagrams/architecture.svg).
+
 ## Business- en systeemcontext
 Kwaliteit beslist over conformiteit. Planning beslist over capaciteit. Sales beslist over een gewijzigde klantbelofte. ERP beheert administratieve orders en voorraad. De workbench verbindt het signaal, de afweging en het bevestigingsspoor.
 

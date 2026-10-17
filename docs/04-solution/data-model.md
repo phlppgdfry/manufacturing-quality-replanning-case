@@ -2,6 +2,8 @@
 
 Voor analist, data-eigenaar en developer. Dit is een logisch doelmodel; de browser gebruikt een kleinere dossierprojectie. Het aggregaat is nooit een vervanging van fysieke ERP-partijtraceerbaarheid.
 
+[Bekijk het logische datadiagram](../diagrams/data-model.svg).
+
 ```mermaid
 erDiagram
  CUSTOMER_ORDER ||--o{ PRODUCTION_ORDER : requires

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-17T01:28:18.976Z",
+  "date": "2026-10-17T01:35:41.126Z",
   "url": "http://127.0.0.1:8078/",
   "tool": "Playwright Chromium; IAB unavailable (Browser is not available: iab)",
   "viewports": [
@@ -22,7 +22,8 @@
     "late delivery remains visible",
     "reload persistence",
     "mobile no document overflow",
-    "eight tour steps",
+    "eight tour steps and consistent snapshots",
+    "tour preserves own stored session",
     "tour keyboard and close",
     "case page desktop and mobile"
   ],

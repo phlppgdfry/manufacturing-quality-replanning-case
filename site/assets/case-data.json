@@ -109,7 +109,8 @@
     "adoption": 0.7,
     "implementationDays": 12,
     "dayRate": 650,
-    "annualSupport": 1200
+    "annualSupport": 1200,
+    "investmentHorizonYears": 3
   },
   "limitations": [
     "Fictieve organisatie en data",

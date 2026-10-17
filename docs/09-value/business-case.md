@@ -11,6 +11,7 @@ Voor sponsor en Operations owner. Alle invoer is illustratief; er is geen echte 
 | KPI-04 | Volledige meldingen en taakvoltooiing zonder hulp | Audit + observatie / Operations owner | 95% volledig is een pilotvoorstel, niet gemeten |
 
 ## Businesscase en stopcriterium
+Het fictieve sponsorcriterium is terugverdienen binnen drie jaar op de meegetelde baten. Dit is een expliciete aanname, geen universele investeringsregel.
 Invoer: 18 relevante afwijkingen per maand, 25 minuten minder afstemming per afwijking, €48 per uur en 70% adoptie. Dit levert vrijgespeelde tijd, geen automatisch realiseerbare cash. Implementatie: 12 dagen à €650, plus €1.200 support per jaar. Geen besparing op afval, claims, voorraad of omzet meegeteld om dubbeltelling en schijnprecisie te vermijden.
 
 Het standaardscenario verdient zich met tijdsbesparing alleen niet terug. De aanbeveling is dus: eerst standaard ERP-configuratie toetsen en de benodigde extensie beperken; geen volledig maatwerkproject op deze cijfers goedkeuren. Een pilot moet aantonen of volume, afstemtijd of aantoonbaar vermeden schade een andere beslissing rechtvaardigen.

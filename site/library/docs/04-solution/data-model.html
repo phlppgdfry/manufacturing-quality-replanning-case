@@ -1,5 +1,6 @@
 <!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Datamodel, hoeveelheden en eigenaarschap — Batchline</title><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1>Datamodel, hoeveelheden en eigenaarschap</h1>
 <p>Voor analist, data-eigenaar en developer. Dit is een logisch doelmodel; de browser gebruikt een kleinere dossierprojectie. Het aggregaat is nooit een vervanging van fysieke ERP-partijtraceerbaarheid.</p>
+<p><a href="../diagrams/data-model.svg">Bekijk het logische datadiagram</a>.</p>
 <pre><code>erDiagram
  CUSTOMER_ORDER ||--o{ PRODUCTION_ORDER : requires
  PRODUCTION_ORDER ||--o{ BATCH : produces

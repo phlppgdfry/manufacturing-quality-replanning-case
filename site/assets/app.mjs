@@ -6,9 +6,10 @@ let storageWarning = '';
 let state;
 try { const raw = localStorage.getItem('batchline-v1'); state = raw ? D.assertState(JSON.parse(raw)) : D.seed(); }
 catch { state = D.seed(); storageWarning = 'Oefenopslag kon niet worden gelezen. De beginsituatie is hersteld.'; }
-let view = 'planning', role = 'planner', tour = new URLSearchParams(location.search).has('tour') ? 0 : -1;
+const requestedTour = new URLSearchParams(location.search).has('tour');
+let view = 'planning', role = 'planner', tour = -1, tourBackup = null;
 let modal = null, notice = '', activeOptions = [];
-function save() { try { localStorage.setItem('batchline-v1', JSON.stringify(state)); } catch { storageWarning = 'Opslaan niet beschikbaar. Deze sessie werkt zonder blijvende opslag.'; } }
+function save() { if(tour>=0)return;try { localStorage.setItem('batchline-v1', JSON.stringify(state)); } catch { storageWarning = 'Opslaan niet beschikbaar. Deze sessie werkt zonder blijvende opslag.'; } }
 function mutate(fn, args) { state = fn(state, { role, expectedVersion: state.version, ...args }); save(); notice = 'Actie vastgelegd in het auditspoor.'; modal = null; render(); }
 const icon = kind => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${({overview:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>',planning:'<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4m10-4v4M3 10h18M7 14h4m-4 3h9"/>',quality:'<path d="M12 3 3 6v6c0 5 9 9 9 9s9-4 9-9V6z"/>',erp:'<rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h6M9 11h6M9 15h4"/>'})[kind]}</svg>`;
 const status = (text, cls='') => `<span class="status ${cls}">${esc(text)}</span>`;
@@ -42,7 +43,7 @@ function action(type) {
   notice='';
   try {
     if(type==='reset') { openDialog('Demo herstellen','<p>Dit verwijdert alleen jouw lokale oefenacties en begint opnieuw met 40 m² geblokkeerd.</p>',()=>{state=D.seed();save();modal=null;view='planning';render();});return; }
-    if(type==='tour'){tour=0;view=steps[0].view;render();return;}
+    if(type==='tour'){startTour();return;}
     if(type==='quality') {openDialog('Kwaliteitsbesluit',`<p>Verdeel ${state.batch.held} m². Alleen Kwaliteit mag bevestigen.</p><div class="form-grid"><label>Vrijgave m²<input name="release" type="number" min="0" step="1" value="10" required></label><label>Herwerk m²<input name="rework" type="number" min="0" step="1" value="20" required></label><label>Afkeur m²<input name="scrap" type="number" min="0" step="1" value="10" required></label></div><label>Bevinding en reden<textarea name="reason" required>Controle uitgevoerd: 10 m² onbeschadigd, 20 m² herstelbaar, 10 m² afkeur.</textarea></label>`, f=>mutate(D.decide,{release:Number(f.get('release')),rework:Number(f.get('rework')),scrap:Number(f.get('scrap')),reason:f.get('reason')}));return;}
     if(type==='options') {
       activeOptions=D.alternatives(state);const snapshotVersion=state.version;
@@ -60,8 +61,18 @@ function renderTour() {
   const step=steps[tour];const box=document.createElement('section');box.className='tour';box.setAttribute('aria-label','Rondleiding');box.innerHTML=`<button class="tour-close" aria-label="Rondleiding sluiten">Sluiten</button><small>Stap ${tour+1} van ${steps.length} · circa 2 minuten</small><h2>${step.title}</h2><p>${step.text}</p><p><small>${step.evidence}</small></p><div class="actions"><button data-prev ${tour===0?'disabled':''}>Vorige</button><button data-next>${tour===steps.length-1?'Afronden':'Volgende'}</button></div>`;
   document.body.querySelectorAll('.tour').forEach(t=>t.remove());document.body.append(box);
   document.querySelectorAll('.tour-step').forEach(e=>e.classList.remove('tour-step'));$(step.target)?.classList.add('tour-step');
-  box.querySelector('[data-prev]').onclick=()=>moveTour(-1);box.querySelector('[data-next]').onclick=()=>moveTour(1);box.querySelector('.tour-close').onclick=()=>{tour=-1;render();};
+  box.querySelector('[data-prev]').onclick=()=>moveTour(-1);box.querySelector('[data-next]').onclick=()=>moveTour(1);box.querySelector('.tour-close').onclick=closeTour;
 }
-function moveTour(delta){if(modal?.open)return;tour+=delta;if(tour<0||tour>=steps.length){tour=-1;}else view=steps[tour].view;notice='';render();}
-document.addEventListener('keydown',e=>{if(tour<0||modal?.open||['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;if(e.key==='Escape'){tour=-1;render();}if(e.key==='ArrowRight')moveTour(1);if(e.key==='ArrowLeft'&&tour>0)moveTour(-1);});
-if(tour>=0)view=steps[tour].view;render();
+function setTourState(index) {
+  state=D.seed();role=index===1||index===4?'quality':index>=5?'integration':'planner';
+  if(index>=2)state=D.decide(state,{role:'quality',expectedVersion:state.version,release:10,rework:20,scrap:10,reason:'Voorbeeld: controlebevinding 10/20/10.'});
+  if(index>=4){state=D.commitPlan(state,{role:'planner',expectedVersion:state.version,option:D.alternatives(state).find(o=>o.id==='recover-A'),reason:'Voorbeeld: minimaal nieuw product; leverafspraak opnieuw afstemmen.'});state=D.finishJob(state,{role:'operator',expectedVersion:state.version});}
+  if(index>=5){state=D.releaseRework(state,{role:'quality',expectedVersion:state.version,reason:'Voorbeeld: herstelcontrole voldoet.'});state=D.sync(state,{role:'integration',expectedVersion:state.version,mode:'lost-ack'});}
+  if(index>=6)while(state.outbox.some(m=>['pending','retry'].includes(m.status)))state=D.sync(state,{role:'integration',expectedVersion:state.version});
+  view=steps[index].view;
+}
+function startTour(){if(!tourBackup)tourBackup={state:structuredClone(state),role,view};tour=0;setTourState(tour);notice='Rondleiding met aparte voorbeeldtoestanden; jouw oefensessie blijft bewaard.';render();}
+function closeTour(){tour=-1;if(tourBackup){({state,role,view}=tourBackup);tourBackup=null;}notice='';render();}
+function moveTour(delta){if(modal?.open)return;const next=tour+delta;if(next<0||next>=steps.length){closeTour();return;}tour=next;setTourState(tour);notice='';render();}
+document.addEventListener('keydown',e=>{if(tour<0||modal?.open||['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName))return;if(e.key==='Escape')closeTour();if(e.key==='ArrowRight')moveTour(1);if(e.key==='ArrowLeft'&&tour>0)moveTour(-1);});
+if(requestedTour)startTour();else render();
