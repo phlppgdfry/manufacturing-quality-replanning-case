@@ -51,7 +51,7 @@ files += [ROOT/p for p in ['README.md','START-HERE.md','EVIDENCE.md','CASE_STUDY
 files.append(ROOT/'site/assets/domain.mjs')
 count=0
 for p in files:
- if not p.is_file() or p.name=='concept.png':continue
+ if not p.is_file():continue
  rel=p.relative_to(ROOT);target=OUT/rel;target.parent.mkdir(parents=True,exist_ok=True)
  if p.suffix=='.md':
   target=target.with_suffix('.html');depth=len(target.relative_to(ROOT/'site').parts)-1;base='../'*depth
