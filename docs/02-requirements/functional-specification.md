@@ -8,12 +8,12 @@ BR-01: planning en kwaliteit gebruiken dezelfde partijhoeveelheid en herkenbare 
 ## UC-01: kwaliteitsbesluit
 Actor: Quality lead. Trigger: een geregistreerde open afwijking. Voorwaarden: partij bekend, positieve blokkade, versie actueel. Stappen: open afwijking; bekijk geproduceerde en geblokkeerde hoeveelheid; verdeel vrijgave/herwerk/afkeur; noteer bevinding; bevestig; registreer besluit en outboxbericht; toon leverimpact. Na afloop: som blijft gelijk, alleen vrijgave verhoogt beschikbare voorraad.
 
-Uitzonderingen: ontbrekende reden → geen mutatie; som wijkt af → geen mutatie; negatieve/fractieve/oneindige hoeveelheid → weigeren; onbevoegde rol → weigeren; oud versienummer → 409 in doelcontract; dubbel besluit → weigeren. Het origineel blijft behouden bij elke weigering. Bestemming bij ERP-storing is pending/retry, niet stilzwijgend “verwerkt”.
+Uitzonderingen: ontbrekende reden → geen mutatie; som wijkt af → geen mutatie; negatieve/fractieve/oneindige hoeveelheid → weigeren; onbevoegde rol → weigeren; niet voldane If-Match-voorwaarde → 412 in het doelcontract; dubbel besluit → weigeren. Het origineel blijft behouden bij elke weigering. Bestemming bij ERP-storing is pending/retry, niet stilzwijgend “verwerkt”.
 
 ## UC-02: herstelplan
 Actor: Planner. Trigger: beoordeelde blokkade veroorzaakt een tekort. Systeem berekent per geschikte lijn vrije slots inclusief omstel en kwaliteitscontrole. Planning vergelijkt minimale nieuwe productie met volledige vervanging. Bevestiging controleert opnieuw dossier- én planningsversie. Een laat voorstel blijft zichtbaar als leverrisico, en kan geen klantbelofte autonoom aanpassen.
 
-Na bevestiging mag alleen Operator uitvoering gereedmelden; daarna kan Quality lead vrijgeven. Nieuwe productie krijgt een eigen kindpartijreferentie. Het demo-object batch is een dossieraggregaat van bron- en kindpartijen, geen fysiek samenvoegen van voorraadpartijen. Fysieke partijsegmenten en ERP-documentreferenties zijn vereist in een productie-implementatie.
+Na bevestiging mag alleen Operator uitvoering gereedmelden; daarna kan Quality lead vrijgeven. Tijdens committed en awaiting-quality mag geen nieuw herstelplan het actieve plan vervangen. Ook een latere afwijking wist een eerder gemist levermoment niet. Nieuwe productie krijgt een eigen kindpartijreferentie. Het demo-object batch is een dossieraggregaat van bron- en kindpartijen, geen fysiek samenvoegen van voorraadpartijen. Fysieke partijsegmenten en ERP-documentreferenties zijn vereist in een productie-implementatie.
 
 ## Regels
 | Regel | Controle | Reden |

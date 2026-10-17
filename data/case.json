@@ -26,7 +26,29 @@
       "rules": "R-01",
       "uat": "UAT-01",
       "kpi": "KPI-01",
-      "path": "docs/02-requirements/functional-specification.md"
+      "path": "docs/02-requirements/functional-specification.md",
+      "story": {
+        "actor": "operator",
+        "intent": "een afwijking met partij, hoeveelheid en reden vastleggen",
+        "value": "de getroffen hoeveelheid direct herleidbaar geblokkeerd is",
+        "acceptance": [
+          {
+            "given": "Afwijking gesloten en 100 m² vrij",
+            "when": "Operator meldt 10 m² met een reden",
+            "then": "90 m² blijft vrij, 10 m² komt in controle en één nieuw bericht wordt aangemaakt"
+          },
+          {
+            "given": "Er is een open afwijking",
+            "when": "Operator meldt een tweede afwijking",
+            "then": "De actie wordt geweigerd zonder verandering van hoeveelheden"
+          },
+          {
+            "given": "Er is 100 m² vrij",
+            "when": "Operator meldt 101 m²",
+            "then": "De actie wordt geweigerd omdat de voorraad onvoldoende is"
+          }
+        ]
+      }
     },
     {
       "id": "FR-02",
@@ -35,7 +57,29 @@
       "rules": "R-02,R-03",
       "uat": "UAT-02,UAT-03",
       "kpi": "KPI-01",
-      "path": "docs/02-requirements/functional-specification.md"
+      "path": "docs/02-requirements/functional-specification.md",
+      "story": {
+        "actor": "Quality lead",
+        "intent": "de volledige geblokkeerde hoeveelheid onderbouwd verdelen",
+        "value": "alleen beoordeeld product vrijkomt en geen hoeveelheid verdwijnt",
+        "acceptance": [
+          {
+            "given": "40 m² in controle en actuele versie",
+            "when": "Kwaliteit bevestigt 10 vrij, 20 herwerk en 10 afkeur met reden",
+            "then": "70 m² is lokaal vrij en het tekort is 30 m²"
+          },
+          {
+            "given": "40 m² in controle",
+            "when": "Kwaliteit verdeelt samen 30 m²",
+            "then": "De somfout wordt zichtbaar en de oorspronkelijke toestand blijft behouden"
+          },
+          {
+            "given": "De rol is Planning",
+            "when": "De gebruiker bevestigt een kwaliteitsbesluit",
+            "then": "Het systeem weigert de actie wegens ontbrekende bevoegdheid"
+          }
+        ]
+      }
     },
     {
       "id": "FR-03",
@@ -44,7 +88,29 @@
       "rules": "R-04,R-10",
       "uat": "UAT-04",
       "kpi": "KPI-02",
-      "path": "docs/04-solution/data-model.md"
+      "path": "docs/04-solution/data-model.md",
+      "story": {
+        "actor": "planner",
+        "intent": "tekort, materiaalvrijgave en ERP-bevestiging afzonderlijk zien",
+        "value": "ik een leverbelofte op de juiste feiten baseer",
+        "acceptance": [
+          {
+            "given": "Er is 30 m² tekort",
+            "when": "Een herstelplan wordt bevestigd",
+            "then": "Het tekort blijft 30 m² totdat herstel is gekeurd"
+          },
+          {
+            "given": "Lokaal 100 m² vrij maar ERP loopt achter",
+            "when": "Planning bekijkt de order",
+            "then": "Het scherm vermeldt dat ERP-bevestiging nog ontbreekt"
+          },
+          {
+            "given": "ERP bevestigt alle vrije voorraad maar herstel eindigt na 16:00",
+            "when": "Planning bekijkt de order",
+            "then": "De benodigde nieuwe leverafspraak blijft zichtbaar"
+          }
+        ]
+      }
     },
     {
       "id": "FR-04",
@@ -53,7 +119,29 @@
       "rules": "R-05,R-06",
       "uat": "UAT-05,UAT-06,UAT-07",
       "kpi": "KPI-02",
-      "path": "docs/04-solution/planning.md"
+      "path": "docs/04-solution/planning.md",
+      "story": {
+        "actor": "planner",
+        "intent": "verklaarbare herstelopties vergelijken en met een actuele versie vastleggen",
+        "value": "ik een uitvoerbaar herstelplan kan verantwoorden",
+        "acceptance": [
+          {
+            "given": "Een lijn heeft slechts 60 minuten vrij",
+            "when": "Een hersteloptie vraagt 100 minuten",
+            "then": "Het systeem gebruikt dat gat niet"
+          },
+          {
+            "given": "Een voorstel is gebaseerd op een oudere dossier- of planversie",
+            "when": "Planning bevestigt",
+            "then": "Het systeem weigert en vraagt een nieuwe vergelijking"
+          },
+          {
+            "given": "Het herstel wacht op herkeuring",
+            "when": "Planning probeert opnieuw te plannen",
+            "then": "Er verschijnt geen nieuw voorstel en het actieve herstel blijft behouden"
+          }
+        ]
+      }
     },
     {
       "id": "FR-05",
@@ -62,7 +150,29 @@
       "rules": "R-07",
       "uat": "UAT-08,UAT-09",
       "kpi": "KPI-01",
-      "path": "docs/03-processes/process-design.md"
+      "path": "docs/03-processes/process-design.md",
+      "story": {
+        "actor": "operator en Quality lead",
+        "intent": "uitvoering en kwaliteitsvrijgave als twee afzonderlijke stappen afhandelen",
+        "value": "een gereedmelding niet onterecht verkoopbare voorraad creëert",
+        "acceptance": [
+          {
+            "given": "Herstelplan is bevestigd",
+            "when": "Operator meldt gereed",
+            "then": "Nieuwe productie krijgt een kindpartij en blijft in controle"
+          },
+          {
+            "given": "Herstelplan wacht op kwaliteitscontrole",
+            "when": "Kwaliteit bevestigt bevinding en vrijgave",
+            "then": "Alleen de geplande herstelhoeveelheden worden vrijgegeven"
+          },
+          {
+            "given": "Herstel is nog niet uitgevoerd",
+            "when": "Kwaliteit probeert opnieuw vrij te geven",
+            "then": "De actie wordt geweigerd"
+          }
+        ]
+      }
     },
     {
       "id": "FR-06",
@@ -71,7 +181,29 @@
       "rules": "R-08,R-09",
       "uat": "UAT-10,UAT-11,UAT-12",
       "kpi": "KPI-03",
-      "path": "docs/05-erp/integration-design.md"
+      "path": "docs/05-erp/integration-design.md",
+      "story": {
+        "actor": "integratiebeheerder",
+        "intent": "berichten veilig herhalen en in de juiste versie verwerken",
+        "value": "een onbekende ontvangst geen dubbele of verouderde voorraadstand veroorzaakt",
+        "acceptance": [
+          {
+            "given": "ERP verwerkt een bericht maar de bevestiging ontbreekt",
+            "when": "Hetzelfde bericht wordt met dezelfde sleutel herhaald",
+            "then": "Er ontstaat geen tweede effect"
+          },
+          {
+            "given": "Dezelfde zakelijke payload heeft een andere JSON-veldvolgorde",
+            "when": "Dezelfde sleutel wordt opnieuw aangeboden",
+            "then": "Het bericht wordt als hetzelfde effect herkend"
+          },
+          {
+            "given": "Een nieuwe versie is al ontvangen",
+            "when": "Een ouder compleet snapshot komt binnen",
+            "then": "De actuele voorraadprojectie blijft staan"
+          }
+        ]
+      }
     },
     {
       "id": "FR-07",
@@ -80,7 +212,29 @@
       "rules": "R-11",
       "uat": "UAT-13",
       "kpi": "KPI-03",
-      "path": "docs/08-operations/runbook.md"
+      "path": "docs/08-operations/runbook.md",
+      "story": {
+        "actor": "integratiebeheerder",
+        "intent": "een dead-letter na een vastgelegde diagnose herstarten",
+        "value": "storingen aantoonbaar en beheerst worden hersteld",
+        "acceptance": [
+          {
+            "given": "Een bericht faalt drie keer",
+            "when": "Integratie bekijkt de wachtrij",
+            "then": "Het bericht staat in dead-letter en stopt met gewone retries"
+          },
+          {
+            "given": "Een dead-letter heeft geen diagnose",
+            "when": "Integratie probeert herstart",
+            "then": "Herstart wordt geweigerd"
+          },
+          {
+            "given": "Ontvangst en oorzaak zijn gecontroleerd",
+            "when": "Integratie motiveert herstart",
+            "then": "Hetzelfde effect wordt met dezelfde sleutel opnieuw aangeboden"
+          }
+        ]
+      }
     },
     {
       "id": "FR-08",
@@ -89,7 +243,29 @@
       "rules": "R-12",
       "uat": "UAT-14",
       "kpi": "KPI-04",
-      "path": "docs/04-solution/security.md"
+      "path": "docs/04-solution/security.md",
+      "story": {
+        "actor": "auditor",
+        "intent": "een besluit en zijn opvolging via versies en referenties reconstrueren",
+        "value": "ik het verband tussen kwaliteitsbesluit, herstel en ERP kan controleren",
+        "acceptance": [
+          {
+            "given": "De volledige herstelketen is uitgevoerd",
+            "when": "De auditor bekijkt het spoor",
+            "then": "Elke overgang heeft een oplopende volgorde, versie en actorrol"
+          },
+          {
+            "given": "De ontvangen ERP-versie wijkt af van de lokale voorraad",
+            "when": "De auditor vergelijkt de projecties",
+            "then": "Het verschil is zichtbaar; lokale vrijgave heet geen bevestigde ERP-boeking"
+          },
+          {
+            "given": "Een gebruiker wijzigt lokale browseropslag",
+            "when": "De auditor beoordeelt het bewijs",
+            "then": "De documentatie erkent dat dit geen immutable productieaudit is"
+          }
+        ]
+      }
     },
     {
       "id": "FR-09",
@@ -98,7 +274,29 @@
       "rules": "R-13",
       "uat": "UAT-15",
       "kpi": "KPI-04",
-      "path": "docs/07-delivery/rollout.md"
+      "path": "docs/07-delivery/rollout.md",
+      "story": {
+        "actor": "Operations owner",
+        "intent": "een pilot met acceptatie, terugval en meetplan voorbereiden",
+        "value": "technische voltooiing niet met een beheerste productie-uitrol wordt verward",
+        "acceptance": [
+          {
+            "given": "Technische tests slagen maar key-user-sign-off ontbreekt",
+            "when": "Het releaseoverleg beoordeelt de pilot",
+            "then": "Het productieadvies blijft NO-GO"
+          },
+          {
+            "given": "Een onverklaard voorraadverschil bestaat",
+            "when": "Het team beoordeelt de pilot",
+            "then": "Het verschil moet eerst worden opgelost en gereconcilieerd"
+          },
+          {
+            "given": "Er zijn al ERP-effecten geboekt",
+            "when": "Rollback is nodig",
+            "then": "Het team bewaart bewijs en gebruikt gecontroleerde compensatie"
+          }
+        ]
+      }
     }
   ],
   "businessCase": {

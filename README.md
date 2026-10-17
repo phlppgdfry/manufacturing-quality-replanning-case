@@ -4,7 +4,7 @@
 
 Onafhankelijke, AI-ondersteunde portfoliocase voor een fictieve fabrikant van metalen dak- en gevelpanelen. Alle bedrijfsgegevens en workshops zijn fictief; geen klantimplementatie of SAP-praktijkervaring geclaimd.
 
-[Open demo met rondleiding](site/index.html?tour) · [Start in 2/5/15 minuten](START-HERE.md) · [Bewijs per activiteit](EVIDENCE.md) · [Volledige case](CASE_STUDY.md) · [Samenvatting](application-kit/executive/one-page-summary.md)
+[Portfolio en case](https://phlppgdfry.github.io/manufacturing-quality-replanning-case/case.html) · [Rondleiding · 2 minuten](https://phlppgdfry.github.io/manufacturing-quality-replanning-case/?tour) · [Start in 2/5/15 minuten](START-HERE.md) · [Bewijs per activiteit](EVIDENCE.md) · [Samenvatting](application-kit/exports/one-pager.pdf)
 
 ## Het probleem
 Een order vraagt 100 m². Van de geproduceerde partij is 40 m² geblokkeerd wegens coatingbeschadiging. Kwaliteit, Planning en ERP moeten dezelfde feiten gebruiken, terwijl hun beslisrechten verschillen. De beschikbare herstelcapaciteit haalt de oorspronkelijke leverbelofte niet: de case verbergt die uitkomst niet.
@@ -42,7 +42,7 @@ npx playwright install chromium
 npm run test:ui
 ```
 
-Browsertests vereisen een draaiende server op poort 8078. CI start die automatisch. Het sitebestand is statisch te hosten onder een subpad; geen backend of tokens nodig. GitHub Pages is voorbereid, publicatie gebeurt pas na afzonderlijk akkoord.
+Browsertests vereisen een draaiende server op poort 8078. CI start die automatisch. Het sitebestand is statisch te hosten onder een subpad; geen backend of tokens nodig. GitHub Pages-publicatie is op 17 oktober 2026 goedgekeurd. De portfolio-ingang staat bovenaan; het README-pad hieronder maakt dezelfde versie lokaal controleerbaar.
 
 ## Als de demo niet laadt
 Open [de statische case](site/case.html) of [fallback-screenshots](docs/screenshots/README.md). De [one-pager](application-kit/exports/one-pager.pdf) en [presentatie](application-kit/exports/deck.pdf) werken offline.

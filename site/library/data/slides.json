@@ -26,7 +26,7 @@
   [
     "ERP en standaard-fit",
     "Een kwaliteitsbesluit is geen boekingsbewijs",
-    "Onderzoek standaardfuncties vóór maatwerk. Gebruik een vaste berichtsleutel en controleer ontvangst na een timeout.",
+    "Onderzoek standaardfuncties vóór maatwerk. Herhaal alleen wanneer het ERP-effect aantoonbaar idempotent is; reconcileer een onbekende uitkomst.",
     "Bron: docs/05-erp/fit-gap.md en integration-design.md. De facade is geen officiële SAP-API."
   ],
   [

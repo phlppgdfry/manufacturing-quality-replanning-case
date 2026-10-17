@@ -75,8 +75,8 @@ api['paths']['/stock-snapshots']={'post':post}
 api['paths']['/recovery-plans']={'post':{
  'operationId':'commitRecoveryPlan', 'summary':'Commit a recovery proposal with version check',
  'parameters':[{'name':'If-Match','in':'header','required':True,'schema':{'type':'string'},'description':'Quoted dossier and plan version ETag'}],
- 'requestBody':{'required':True,'content':{'application/json':{'schema':{'type':'object','required':['optionId','reason'],'properties':{'optionId':{'type':'string'},'reason':{'type':'string','minLength':1}}}}}},
- 'responses':{'201':{'description':'Plan committed'},'400':{'description':'Invalid proposal'},'401':{'description':'Authentication required'},'403':{'description':'Planner required'},'409':{'description':'Stale version'}}
+ 'requestBody':{'required':True,'content':{'application/json':{'schema':{'type':'object','additionalProperties':False,'required':['optionId','reason'],'properties':{'optionId':{'type':'string'},'reason':{'type':'string','minLength':1,'pattern':r'\S'}}}}}},
+ 'responses':{'201':{'description':'Plan committed'},'400':{'description':'Invalid proposal'},'401':{'description':'Authentication required'},'403':{'description':'Planner required'},'409':{'description':'Active recovery or business conflict'},'412':{'description':'If-Match precondition failed; refresh the dossier and proposal'}}
 }}
 (R/'contracts/openapi.json').write_text(json.dumps(api,indent=2)+'\n')
 (R/'contracts/stock-example.json').write_text(json.dumps({'batchId':'B-2401','version':2,'produced':100,'released':70,'held':0,'rework':20,'scrap':10},indent=2)+'\n')

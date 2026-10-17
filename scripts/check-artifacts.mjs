@@ -21,5 +21,8 @@ const c=JSON.parse(read('data/case.json')), tests=read('tests/domain.test.mjs'),
 assert.deepEqual(JSON.parse(read('site/assets/case-data.json')).requirements,c.requirements);
 for(const r of c.requirements){assert.ok(read('docs/02-requirements/traceability.md').includes(r.id));for(const id of r.uat.split(',')){assert.ok(uat.includes(id),`Missing UAT ${id}`);if(id!=='UAT-15')assert.ok(tests.includes(id),`Missing executable example ${id}`);}}
 for(const r of c.requirements)assert.ok(read(r.path).trim().length>250);
+for(const r of c.requirements){assert.ok(r.story.actor&&r.story.intent&&r.story.value);assert.equal(r.story.acceptance.length,3);for(const a of r.story.acceptance)assert.ok(a.given&&a.when&&a.then);}
+const contract=JSON.parse(read('contracts/openapi.json'));
+assert.ok(contract.paths['/recovery-plans'].post.responses['412'],'If-Match failures require a precondition response');
 const seed=(await import('../site/assets/domain.mjs')).seed();assert.equal(seed.batch.produced,c.scope.originalQuantity);assert.equal(seed.batch.held,c.scope.initialHeld);assert.equal(seed.orders[1].demand,c.scope.demand);
 console.log('Catalog, canonical specs, UAT references, executable examples and site model consistent.');

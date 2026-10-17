@@ -1,17 +1,17 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADR-02 — Een plan is geen voorraad — Batchline</title><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1>ADR-02 — Een plan is geen voorraad</h1>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ADR-02 — Een plan is geen voorraad — Batchline</title><meta name="description" content="ADR-02 — Een plan is geen voorraad — functionele-analysecase met fictieve data"><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1 id="adr-02-een-plan-is-geen-voorraad">ADR-02 — Een plan is geen voorraad</h1><nav class="doc-toc" aria-label="In dit document"><a href="#context">Context</a><a href="#opties">Opties</a><a href="#besluit-en-reden">Besluit en reden</a><a href="#consequenties-en-risico">Consequenties en risico</a><a href="#beslisbevoegdheid">Beslisbevoegdheid</a><a href="#wanneer-herzien">Wanneer herzien</a><a href="#trace-en-validatie">Trace en validatie</a></nav>
 <p>Status: vastgesteld als portfolio-ontwerp, 17 oktober 2026. Geen besluit van echte stakeholders.</p>
-<h2>Context</h2>
+<h2 id="context">Context</h2>
 <p>Een mooie herplanning kan een order ten onrechte groen maken.</p>
-<h2>Opties</h2>
+<h2 id="opties">Opties</h2>
 <p>A: geplande hoeveelheid meetellen; B: gereedmelding voldoende; C: kwaliteitsvrijgave plus ERP-bevestiging vereist.</p>
-<h2>Besluit en reden</h2>
+<h2 id="besluit-en-reden">Besluit en reden</h2>
 <p>C. Elke fase krijgt een apart feit; herstel blijft geblokkeerd tot controle.</p>
-<h2>Consequenties en risico</h2>
+<h2 id="consequenties-en-risico">Consequenties en risico</h2>
 <p>Statusmodel en UI worden iets uitgebreider; onterecht leverbaar product wordt vermeden.</p>
-<h2>Beslisbevoegdheid</h2>
+<h2 id="beslisbevoegdheid">Beslisbevoegdheid</h2>
 <p>Quality lead + Inventory owner.</p>
-<h2>Wanneer herzien</h2>
+<h2 id="wanneer-herzien">Wanneer herzien</h2>
 <p>Bij reservering met expliciet toekomstig ATP een apart beloftesignaal tonen, nooit voorraadstatus vervalsen.</p>
-<h2>Trace en validatie</h2>
+<h2 id="trace-en-validatie">Trace en validatie</h2>
 <p>R-04/R-07/R-10; UAT-04/UAT-08/UAT-09. Zie <a href="../06-validation/test-strategy.html">acceptatiegevallen</a> en de uitvoerbare domeintests.</p>
 <p>Terug: <a href="README.html">besluitenregister</a>.</p><footer class="footer">Onafhankelijke portfoliocase · fictieve organisatie · ERP gesimuleerd</footer></main></body></html>

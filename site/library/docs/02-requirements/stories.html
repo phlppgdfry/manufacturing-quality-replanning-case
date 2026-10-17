@@ -1,29 +1,138 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>User stories en refinementbaseline — Batchline</title><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1>User stories en refinementbaseline</h1>
-<p>Gegenereerd uit de canonieke catalogus. PO prioriteert, team schat; de analist verduidelijkt uitzonderingen.</p>
-<h2>US-01 — Kwaliteitsafwijking registreren</h2>
-<p>Als operator wil ik blokkeer een positieve hoeveelheid binnen de beschikbare voorraad; leg reden, partij en versie vast. zodat de partij direct herleidbaar geblokkeerd is.</p>
-<p>Acceptatie: UAT-01; regels R-01; meetpunt KPI-01. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-02 — Geblokkeerde hoeveelheid beoordelen</h2>
-<p>Als Quality lead wil ik alleen Kwaliteit verdeelt de volledige blokkade in vrijgave, herwerk en afkeur met een reden. zodat geen hoeveelheid verdwijnt en alleen bevoegden vrijgeven.</p>
-<p>Acceptatie: UAT-02,UAT-03; regels R-02,R-03; meetpunt KPI-01. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-03 — Leverimpact bepalen</h2>
-<p>Als planner wil ik bereken tekort uitsluitend uit lokaal vrijgegeven product; toon ERP-bevestiging afzonderlijk. zodat ik geen fictief beschikbare voorraad beloof.</p>
-<p>Acceptatie: UAT-04; regels R-04,R-10; meetpunt KPI-02. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-04 — Herstelopties vergelijken en bevestigen</h2>
-<p>Als planner wil ik toon geschikte lijnen met vrije capaciteit, omstel- en controletijd; controleer versies opnieuw bij bevestiging. zodat ik een uitvoerbaar plan kan verdedigen.</p>
-<p>Acceptatie: UAT-05,UAT-06,UAT-07; regels R-05,R-06; meetpunt KPI-02. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-05 — Herstel uitvoeren en opnieuw keuren</h2>
-<p>Als operator en Quality lead wil ik operator meldt gereed; Kwaliteit geeft pas daarna de herstelde en vervangende hoeveelheid vrij. zodat gereedmelding niet met goedkeuring wordt verward.</p>
-<p>Acceptatie: UAT-08,UAT-09; regels R-07; meetpunt KPI-01. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-06 — Voorraadstatus veilig overdragen</h2>
-<p>Als integratiebeheerder wil ik bewaar berichten in outbox; ontvang met unieke sleutel en inhoudscontrole; oude versies mogen actuele voorraad niet overschrijven. zodat onbekende ontvangst geen dubbele verwerking veroorzaakt.</p>
-<p>Acceptatie: UAT-10,UAT-11,UAT-12; regels R-08,R-09; meetpunt KPI-03. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-07 — ERP-storing herstellen</h2>
-<p>Als integratiebeheerder wil ik na drie mislukte pogingen dead-letter; alleen Integratie mag na diagnose herstarten. zodat fouten zichtbaar en beheersbaar blijven.</p>
-<p>Acceptatie: UAT-13; regels R-11; meetpunt KPI-03. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-08 — Besluiten herleiden</h2>
-<p>Als auditor wil ik leg actorrol, actie, versie, planreferentie en berichtsleutel vast; productie vereist append-only serveraudit. zodat ik besluiten en effecten kan reconstrueren.</p>
-<p>Acceptatie: UAT-14; regels R-12; meetpunt KPI-04. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
-<h2>US-09 — Beheerste pilot en feedback</h2>
-<p>Als Operations owner wil ik bereid businessacceptatie, training, go/no-go, rollback en benefits review voor. zodat technische voltooiing geen onbeheerste uitrol wordt.</p>
-<p>Acceptatie: UAT-15; regels R-13; meetpunt KPI-04. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p><footer class="footer">Onafhankelijke portfoliocase · fictieve organisatie · ERP gesimuleerd</footer></main></body></html>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>User stories en acceptatiecriteria — Batchline</title><meta name="description" content="User stories en acceptatiecriteria — functionele-analysecase met fictieve data"><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1 id="user-stories-en-acceptatiecriteria">User stories en acceptatiecriteria</h1><nav class="doc-toc" aria-label="In dit document"><a href="#us-01-kwaliteitsafwijking-registreren">US-01 — Kwaliteitsafwijking registreren</a><a href="#us-02-geblokkeerde-hoeveelheid-beoordelen">US-02 — Geblokkeerde hoeveelheid beoordelen</a><a href="#us-03-leverimpact-bepalen">US-03 — Leverimpact bepalen</a><a href="#us-04-herstelopties-vergelijken-en-bevestigen">US-04 — Herstelopties vergelijken en bevestigen</a><a href="#us-05-herstel-uitvoeren-en-opnieuw-keuren">US-05 — Herstel uitvoeren en opnieuw keuren</a><a href="#us-06-voorraadstatus-veilig-overdragen">US-06 — Voorraadstatus veilig overdragen</a><a href="#us-07-erp-storing-herstellen">US-07 — ERP-storing herstellen</a><a href="#us-08-besluiten-herleiden">US-08 — Besluiten herleiden</a><a href="#us-09-beheerste-pilot-en-feedback">US-09 — Beheerste pilot en feedback</a></nav>
+<p>Gegenereerd uit de canonieke catalogus. Elke story heeft een actor, een resultaat en concrete Given/When/Then-voorbeelden. PO bepaalt prioriteit; het team schat.</p>
+<h2 id="us-01-kwaliteitsafwijking-registreren">US-01 — Kwaliteitsafwijking registreren</h2>
+<p>Als operator wil ik een afwijking met partij, hoeveelheid en reden vastleggen, zodat de getroffen hoeveelheid direct herleidbaar geblokkeerd is.</p>
+<h3 id="ac-01-1">AC-01-1</h3>
+<p><strong>Given:</strong> Afwijking gesloten en 100 m² vrij.</p>
+<p><strong>When:</strong> Operator meldt 10 m² met een reden.</p>
+<p><strong>Then:</strong> 90 m² blijft vrij, 10 m² komt in controle en één nieuw bericht wordt aangemaakt.</p>
+<h3 id="ac-01-2">AC-01-2</h3>
+<p><strong>Given:</strong> Er is een open afwijking.</p>
+<p><strong>When:</strong> Operator meldt een tweede afwijking.</p>
+<p><strong>Then:</strong> De actie wordt geweigerd zonder verandering van hoeveelheden.</p>
+<h3 id="ac-01-3">AC-01-3</h3>
+<p><strong>Given:</strong> Er is 100 m² vrij.</p>
+<p><strong>When:</strong> Operator meldt 101 m².</p>
+<p><strong>Then:</strong> De actie wordt geweigerd omdat de voorraad onvoldoende is.</p>
+<p>Trace: FR-01 → R-01 → UAT-01 → KPI-01. Prioriteit: Must-have.</p>
+<h2 id="us-02-geblokkeerde-hoeveelheid-beoordelen">US-02 — Geblokkeerde hoeveelheid beoordelen</h2>
+<p>Als Quality lead wil ik de volledige geblokkeerde hoeveelheid onderbouwd verdelen, zodat alleen beoordeeld product vrijkomt en geen hoeveelheid verdwijnt.</p>
+<h3 id="ac-02-1">AC-02-1</h3>
+<p><strong>Given:</strong> 40 m² in controle en actuele versie.</p>
+<p><strong>When:</strong> Kwaliteit bevestigt 10 vrij, 20 herwerk en 10 afkeur met reden.</p>
+<p><strong>Then:</strong> 70 m² is lokaal vrij en het tekort is 30 m².</p>
+<h3 id="ac-02-2">AC-02-2</h3>
+<p><strong>Given:</strong> 40 m² in controle.</p>
+<p><strong>When:</strong> Kwaliteit verdeelt samen 30 m².</p>
+<p><strong>Then:</strong> De somfout wordt zichtbaar en de oorspronkelijke toestand blijft behouden.</p>
+<h3 id="ac-02-3">AC-02-3</h3>
+<p><strong>Given:</strong> De rol is Planning.</p>
+<p><strong>When:</strong> De gebruiker bevestigt een kwaliteitsbesluit.</p>
+<p><strong>Then:</strong> Het systeem weigert de actie wegens ontbrekende bevoegdheid.</p>
+<p>Trace: FR-02 → R-02,R-03 → UAT-02,UAT-03 → KPI-01. Prioriteit: Must-have.</p>
+<h2 id="us-03-leverimpact-bepalen">US-03 — Leverimpact bepalen</h2>
+<p>Als planner wil ik tekort, materiaalvrijgave en ERP-bevestiging afzonderlijk zien, zodat ik een leverbelofte op de juiste feiten baseer.</p>
+<h3 id="ac-03-1">AC-03-1</h3>
+<p><strong>Given:</strong> Er is 30 m² tekort.</p>
+<p><strong>When:</strong> Een herstelplan wordt bevestigd.</p>
+<p><strong>Then:</strong> Het tekort blijft 30 m² totdat herstel is gekeurd.</p>
+<h3 id="ac-03-2">AC-03-2</h3>
+<p><strong>Given:</strong> Lokaal 100 m² vrij maar ERP loopt achter.</p>
+<p><strong>When:</strong> Planning bekijkt de order.</p>
+<p><strong>Then:</strong> Het scherm vermeldt dat ERP-bevestiging nog ontbreekt.</p>
+<h3 id="ac-03-3">AC-03-3</h3>
+<p><strong>Given:</strong> ERP bevestigt alle vrije voorraad maar herstel eindigt na 16:00.</p>
+<p><strong>When:</strong> Planning bekijkt de order.</p>
+<p><strong>Then:</strong> De benodigde nieuwe leverafspraak blijft zichtbaar.</p>
+<p>Trace: FR-03 → R-04,R-10 → UAT-04 → KPI-02. Prioriteit: Must-have.</p>
+<h2 id="us-04-herstelopties-vergelijken-en-bevestigen">US-04 — Herstelopties vergelijken en bevestigen</h2>
+<p>Als planner wil ik verklaarbare herstelopties vergelijken en met een actuele versie vastleggen, zodat ik een uitvoerbaar herstelplan kan verantwoorden.</p>
+<h3 id="ac-04-1">AC-04-1</h3>
+<p><strong>Given:</strong> Een lijn heeft slechts 60 minuten vrij.</p>
+<p><strong>When:</strong> Een hersteloptie vraagt 100 minuten.</p>
+<p><strong>Then:</strong> Het systeem gebruikt dat gat niet.</p>
+<h3 id="ac-04-2">AC-04-2</h3>
+<p><strong>Given:</strong> Een voorstel is gebaseerd op een oudere dossier- of planversie.</p>
+<p><strong>When:</strong> Planning bevestigt.</p>
+<p><strong>Then:</strong> Het systeem weigert en vraagt een nieuwe vergelijking.</p>
+<h3 id="ac-04-3">AC-04-3</h3>
+<p><strong>Given:</strong> Het herstel wacht op herkeuring.</p>
+<p><strong>When:</strong> Planning probeert opnieuw te plannen.</p>
+<p><strong>Then:</strong> Er verschijnt geen nieuw voorstel en het actieve herstel blijft behouden.</p>
+<p>Trace: FR-04 → R-05,R-06 → UAT-05,UAT-06,UAT-07 → KPI-02. Prioriteit: Must-have.</p>
+<h2 id="us-05-herstel-uitvoeren-en-opnieuw-keuren">US-05 — Herstel uitvoeren en opnieuw keuren</h2>
+<p><strong>US-05a — Operator:</strong> Als operator wil ik de fysieke uitvoering gereedmelden, zodat Kwaliteit de herstelde hoeveelheid opnieuw kan beoordelen.</p>
+<p><strong>US-05b — Kwaliteit:</strong> Als Quality lead wil ik het uitgevoerde herstel afzonderlijk controleren en vrijgeven, zodat alleen goedgekeurd product beschikbaar wordt.</p>
+<h3 id="ac-05-1">AC-05-1</h3>
+<p><strong>Given:</strong> Herstelplan is bevestigd.</p>
+<p><strong>When:</strong> Operator meldt gereed.</p>
+<p><strong>Then:</strong> Nieuwe productie krijgt een kindpartij en blijft in controle.</p>
+<h3 id="ac-05-2">AC-05-2</h3>
+<p><strong>Given:</strong> Herstelplan wacht op kwaliteitscontrole.</p>
+<p><strong>When:</strong> Kwaliteit bevestigt bevinding en vrijgave.</p>
+<p><strong>Then:</strong> Alleen de geplande herstelhoeveelheden worden vrijgegeven.</p>
+<h3 id="ac-05-3">AC-05-3</h3>
+<p><strong>Given:</strong> Herstel is nog niet uitgevoerd.</p>
+<p><strong>When:</strong> Kwaliteit probeert opnieuw vrij te geven.</p>
+<p><strong>Then:</strong> De actie wordt geweigerd.</p>
+<p>Trace: FR-05 → R-07 → UAT-08,UAT-09 → KPI-01. Prioriteit: Must-have.</p>
+<h2 id="us-06-voorraadstatus-veilig-overdragen">US-06 — Voorraadstatus veilig overdragen</h2>
+<p>Als integratiebeheerder wil ik berichten veilig herhalen en in de juiste versie verwerken, zodat een onbekende ontvangst geen dubbele of verouderde voorraadstand veroorzaakt.</p>
+<h3 id="ac-06-1">AC-06-1</h3>
+<p><strong>Given:</strong> ERP verwerkt een bericht maar de bevestiging ontbreekt.</p>
+<p><strong>When:</strong> Hetzelfde bericht wordt met dezelfde sleutel herhaald.</p>
+<p><strong>Then:</strong> Er ontstaat geen tweede effect.</p>
+<h3 id="ac-06-2">AC-06-2</h3>
+<p><strong>Given:</strong> Dezelfde zakelijke payload heeft een andere JSON-veldvolgorde.</p>
+<p><strong>When:</strong> Dezelfde sleutel wordt opnieuw aangeboden.</p>
+<p><strong>Then:</strong> Het bericht wordt als hetzelfde effect herkend.</p>
+<h3 id="ac-06-3">AC-06-3</h3>
+<p><strong>Given:</strong> Een nieuwe versie is al ontvangen.</p>
+<p><strong>When:</strong> Een ouder compleet snapshot komt binnen.</p>
+<p><strong>Then:</strong> De actuele voorraadprojectie blijft staan.</p>
+<p>Trace: FR-06 → R-08,R-09 → UAT-10,UAT-11,UAT-12 → KPI-03. Prioriteit: Must-have.</p>
+<h2 id="us-07-erp-storing-herstellen">US-07 — ERP-storing herstellen</h2>
+<p>Als integratiebeheerder wil ik een dead-letter na een vastgelegde diagnose herstarten, zodat storingen aantoonbaar en beheerst worden hersteld.</p>
+<h3 id="ac-07-1">AC-07-1</h3>
+<p><strong>Given:</strong> Een bericht faalt drie keer.</p>
+<p><strong>When:</strong> Integratie bekijkt de wachtrij.</p>
+<p><strong>Then:</strong> Het bericht staat in dead-letter en stopt met gewone retries.</p>
+<h3 id="ac-07-2">AC-07-2</h3>
+<p><strong>Given:</strong> Een dead-letter heeft geen diagnose.</p>
+<p><strong>When:</strong> Integratie probeert herstart.</p>
+<p><strong>Then:</strong> Herstart wordt geweigerd.</p>
+<h3 id="ac-07-3">AC-07-3</h3>
+<p><strong>Given:</strong> Ontvangst en oorzaak zijn gecontroleerd.</p>
+<p><strong>When:</strong> Integratie motiveert herstart.</p>
+<p><strong>Then:</strong> Hetzelfde effect wordt met dezelfde sleutel opnieuw aangeboden.</p>
+<p>Trace: FR-07 → R-11 → UAT-13 → KPI-03. Prioriteit: Must-have.</p>
+<h2 id="us-08-besluiten-herleiden">US-08 — Besluiten herleiden</h2>
+<p>Als auditor wil ik een besluit en zijn opvolging via versies en referenties reconstrueren, zodat ik het verband tussen kwaliteitsbesluit, herstel en ERP kan controleren.</p>
+<h3 id="ac-08-1">AC-08-1</h3>
+<p><strong>Given:</strong> De volledige herstelketen is uitgevoerd.</p>
+<p><strong>When:</strong> De auditor bekijkt het spoor.</p>
+<p><strong>Then:</strong> Elke overgang heeft een oplopende volgorde, versie en actorrol.</p>
+<h3 id="ac-08-2">AC-08-2</h3>
+<p><strong>Given:</strong> De ontvangen ERP-versie wijkt af van de lokale voorraad.</p>
+<p><strong>When:</strong> De auditor vergelijkt de projecties.</p>
+<p><strong>Then:</strong> Het verschil is zichtbaar; lokale vrijgave heet geen bevestigde ERP-boeking.</p>
+<h3 id="ac-08-3">AC-08-3</h3>
+<p><strong>Given:</strong> Een gebruiker wijzigt lokale browseropslag.</p>
+<p><strong>When:</strong> De auditor beoordeelt het bewijs.</p>
+<p><strong>Then:</strong> De documentatie erkent dat dit geen immutable productieaudit is.</p>
+<p>Trace: FR-08 → R-12 → UAT-14 → KPI-04. Prioriteit: Must-have.</p>
+<h2 id="us-09-beheerste-pilot-en-feedback">US-09 — Beheerste pilot en feedback</h2>
+<p>Als Operations owner wil ik een pilot met acceptatie, terugval en meetplan voorbereiden, zodat technische voltooiing niet met een beheerste productie-uitrol wordt verward.</p>
+<h3 id="ac-09-1">AC-09-1</h3>
+<p><strong>Given:</strong> Technische tests slagen maar key-user-sign-off ontbreekt.</p>
+<p><strong>When:</strong> Het releaseoverleg beoordeelt de pilot.</p>
+<p><strong>Then:</strong> Het productieadvies blijft NO-GO.</p>
+<h3 id="ac-09-2">AC-09-2</h3>
+<p><strong>Given:</strong> Een onverklaard voorraadverschil bestaat.</p>
+<p><strong>When:</strong> Het team beoordeelt de pilot.</p>
+<p><strong>Then:</strong> Het verschil moet eerst worden opgelost en gereconcilieerd.</p>
+<h3 id="ac-09-3">AC-09-3</h3>
+<p><strong>Given:</strong> Er zijn al ERP-effecten geboekt.</p>
+<p><strong>When:</strong> Rollback is nodig.</p>
+<p><strong>Then:</strong> Het team bewaart bewijs en gebruikt gecontroleerde compensatie.</p>
+<p>Trace: FR-09 → R-13 → UAT-15 → KPI-04. Prioriteit: releasevoorwaarde.</p><footer class="footer">Onafhankelijke portfoliocase · fictieve organisatie · ERP gesimuleerd</footer></main></body></html>

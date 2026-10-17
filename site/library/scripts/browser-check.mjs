@@ -35,7 +35,14 @@ await page.locator('.tour [data-next]').click();assert.equal(await page.locator(
 await page.goto(url+'?tour');await page.keyboard.press('ArrowRight');assert.match(await page.locator('.tour').textContent(),/Stap 2 van 8/);await page.keyboard.press('Escape');assert.equal(await page.locator('.tour').count(),0);
 await page.goto(url+'case.html');await page.getByRole('heading',{name:'Een kwaliteitsblokkade verandert het productieplan'}).waitFor();await page.screenshot({path:path.join(dir,'case.png'),fullPage:true});
 await page.setViewportSize({width:375,height:812});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.screenshot({path:path.join(dir,'case-mobile.png'),fullPage:true});
+await page.goto(url+'library/docs/04-solution/architecture.html');
+assert.ok(await page.locator('svg, img[src$=".svg"]').count());
+assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+await page.goto(url+'library/docs/02-requirements/stories.html');
+assert.equal(await page.getByRole('heading',{name:/^AC-/}).count(),27);
+await page.goto(url);await page.evaluate(()=>localStorage.setItem('batchline-v1','{broken'));
+await page.reload();await page.getByRole('heading',{name:'Productieplanning',exact:true}).waitFor();
 assert.deepEqual(errors,[]);
-const report={date:new Date().toISOString(),url,tool:'Playwright Chromium; IAB unavailable (Browser is not available: iab)',viewports:['1536x1024','375x812'],checks:['page identity','no runtime console errors','wrong role rejected','quantity sum rejected','quality 10/20/10','three capacity options and late outcome','planner commit','operator completion','quality reinspection','lost acknowledgement duplicate','dead-letter diagnosed replay','ERP reconciliation','late delivery remains visible','reload persistence','mobile no document overflow','eight tour steps and consistent snapshots','tour preserves own stored session','tour keyboard and close','case page desktop and mobile'],errors};
+const report={date:new Date().toISOString(),url,tool:'Playwright Chromium; IAB unavailable (Browser is not available: iab)',viewports:['1536x1024','375x812'],checks:['page identity','no runtime console errors','wrong role rejected','quantity sum rejected','quality 10/20/10','three capacity options and late outcome','planner commit','operator completion','quality reinspection','lost acknowledgement duplicate','dead-letter diagnosed replay','ERP reconciliation','late delivery remains visible','reload persistence','mobile no document overflow','eight tour steps and consistent snapshots','tour preserves own stored session','tour keyboard and close','case page desktop and mobile','readable architecture SVG and 27 acceptance examples','malformed stored session recovery'],errors};
 await fs.writeFile(path.join(root,'docs/06-validation/browser-results.json'),JSON.stringify(report,null,2)+'\n');
 await browser.close();console.log(JSON.stringify(report,null,2));

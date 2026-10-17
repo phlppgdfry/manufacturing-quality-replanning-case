@@ -24,6 +24,10 @@ Domeintests: hoeveelheidconservering, rollen, versies, capaciteit, dubbele beric
 | UAT-14 | Volledige keten | Auditsequence strikt stijgend; balans sluit |
 | UAT-15 | Techniek groen maar key-user-sign-off ontbreekt | Geen productie-go-live |
 
+## Eindreview vóór publicatie
+
+Gevonden en hersteld: een nieuw plan kon tijdens awaiting-quality het actieve herstel vervangen; veldvolgorde kon ten onrechte een idempotentieconflict geven; een latere afwijking kon een eerder gemiste levertijd uit het actuele plan laten verdwijnen. De regressietests controleren planvergrendeling, zakelijke inhoud, oude ontvangstregisters en behouden leverhistoriek. De kalendercontrole weigert ook een schijnbaar gat dat na sluiting valt. De opgegeven fase blijft een browserdemo, geen echte ERP-boeking.
+
 ## Defecten en feedback
 Werkelijk ontwerpissue gevonden in review: alleen lokaal voldoende vrijgegeven voorraad zou de order als veilig tonen terwijl ERP nog achterloopt. Fix: R-10/canShip eist ook gelijk bevestigd snapshot en geen open overdracht. Regressiecontrole: vrijgave zonder sync blijft leverrisico. Dit is een analyse-/implementatiereview, geen verzonnen key-userfeedback.
 

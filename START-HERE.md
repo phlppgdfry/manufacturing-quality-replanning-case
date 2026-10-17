@@ -1,6 +1,6 @@
 # Kies je leesroute
 
-**2 minuten:** [samenvatting](application-kit/executive/one-page-summary.md) → [demo met rondleiding](site/index.html?tour). Begrijp de blokkade, bevoegdheid en leverimpact.
+**2 minuten:** [samenvatting](application-kit/executive/one-page-summary.md) → [demo met rondleiding](https://phlppgdfry.github.io/manufacturing-quality-replanning-case/?tour). Begrijp de blokkade, bevoegdheid en leverimpact.
 
 **5 minuten:** [proces](docs/03-processes/process-design.md) → [ERP fit-gap](docs/05-erp/fit-gap.md) → [bewijs](EVIDENCE.md). Kijk vooral waarom geen maatwerk-go zonder standaardonderzoek volgt.
 

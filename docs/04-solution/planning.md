@@ -14,6 +14,8 @@ Na besluit 10/20/10 is het tekort 30. Herwerkvariant: 20 herwerk + 10 nieuw. Op 
 
 Dit ongemakkelijke resultaat is inhoudelijk belangrijk: een verbeterde applicatie maakt capaciteit niet groter. De planner moet Sales betrekken voor een nieuwe afspraak of een bestaande opdracht bewust herschikken. Automatisch andere orders verschuiven is buiten scope; een latere uitbreiding moet de impact op al die orders tonen en opnieuw laten bevestigen.
 
+Een actief herstel blijft vergrendeld totdat de fysieke uitvoering én herkeuring zijn afgerond. Een nieuwe afwijking kan een eerder gemiste leverbelofte niet wissen: het laatst bekende gereedmoment blijft aan de order gekoppeld.
+
 ## Uitzonderingen
 Profiel ontbreekt → niet aanbieden. Slot buiten kalender → niet aanbieden. Tegenstrijdige productie en kwaliteitsdata → geen commit vóór opheldering. Oud voorstel → nieuw voorstel berekenen, nooit stil aanpassen. Productie gereed zonder kwaliteitsvrijgave → nog niet leverbaar. Een vertraagd ERP-bericht → lokale vrijgave zichtbaar maar levering nog geblokkeerd.
 

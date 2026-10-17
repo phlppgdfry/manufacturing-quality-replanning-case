@@ -9,6 +9,8 @@ Voor lezers die feiten, aannames en ontwerp van elkaar willen scheiden. Werkgeve
 - [OpenAPI 3.1.0](https://spec.openapis.org/oas/v3.1.0): ontwerpcontract van de eigen ERP-facade, geen officiële SAP-API.
 - [Scrum Guide](https://scrumguides.org/scrum-guide.html): Product Owner prioriteert; de analist verduidelijkt gedrag, afhankelijkheden en acceptatie. De analist is geen afzonderlijke verplichte Scrum-rol.
 
+- [RFC 9110, If-Match](https://www.rfc-editor.org/rfc/rfc9110.html#section-13.1.1): een niet voldane HTTP-preconditie wordt onderscheiden van een zakelijk conflict; het facadeontwerp gebruikt daarvoor 412. Geraadpleegd 17 oktober 2026.
+
 ## Interpretatiegrens
 De SAP-bronnen beschrijven ERP-documentatie; ze bewijzen geen specifiek SAP-product, release, configuratie of modulegebruik bij een werkgever. De simulator gebruikt een vereenvoudigd dossier-snapshotmodel. Een kwaliteitsbesluit is niet hetzelfde als een voorraadboeking. De mapping naar inspectielot, voorraadstatus en boekingsdocument moet in de doelomgeving worden onderzocht en getest.
 

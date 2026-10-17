@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-17T01:35:41.126Z",
+  "date": "2026-10-17T14:12:41.610Z",
   "url": "http://127.0.0.1:8078/",
   "tool": "Playwright Chromium; IAB unavailable (Browser is not available: iab)",
   "viewports": [
@@ -25,7 +25,9 @@
     "eight tour steps and consistent snapshots",
     "tour preserves own stored session",
     "tour keyboard and close",
-    "case page desktop and mobile"
+    "case page desktop and mobile",
+    "readable architecture SVG and 27 acceptance examples",
+    "malformed stored session recovery"
   ],
   "errors": []
 }

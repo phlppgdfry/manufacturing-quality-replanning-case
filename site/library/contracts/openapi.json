@@ -122,6 +122,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "additionalProperties": false,
                 "required": [
                   "optionId",
                   "reason"
@@ -132,7 +133,8 @@
                   },
                   "reason": {
                     "type": "string",
-                    "minLength": 1
+                    "minLength": 1,
+                    "pattern": "\\S"
                   }
                 }
               }
@@ -153,7 +155,10 @@
             "description": "Planner required"
           },
           "409": {
-            "description": "Stale version"
+            "description": "Active recovery or business conflict"
+          },
+          "412": {
+            "description": "If-Match precondition failed; refresh the dossier and proposal"
           }
         }
       }

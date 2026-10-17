@@ -41,7 +41,7 @@ export function seed() {
   };
 }
 export function assertState(s) {
-  if (s?.schema !== 1 || !Number.isSafeInteger(s.version) || !Array.isArray(s.audit) || !Array.isArray(s.outbox)) fail('INVALID_STATE', 'Oefenopslag ongeldig. Reset de demo.');
+  if (s?.schema !== 1 || !Number.isSafeInteger(s.version) || s.version < 1 || !Number.isSafeInteger(s.planVersion) || !s.batch || !s.issue || !s.receiver || !s.receiver.receipts || !Array.isArray(s.audit) || !Array.isArray(s.outbox) || !Array.isArray(s.childLots) || !Array.isArray(s.jobs) || !Array.isArray(s.machines) || !Array.isArray(s.orders) || s.orders.length !== 3 || !s.orders.every(o => typeof o.id === 'string' && typeof o.product === 'string' && Number.isSafeInteger(o.demand) && Number.isSafeInteger(o.due)) || !s.machines.every(m => Array.isArray(m.profiles))) fail('INVALID_STATE', 'Oefenopslag ongeldig. Reset de demo.');
   for (const f of ['produced', 'released', 'held', 'rework', 'scrap']) qty(s.batch[f]);
   if (s.batch.produced !== s.batch.released + s.batch.held + s.batch.rework + s.batch.scrap) fail('CONSERVATION', 'De hoeveelheidbalans klopt niet.');
   return s;
@@ -51,7 +51,7 @@ export function canShip(s) {
   const stock = s.receiver.stock;
   return shortage(s) === 0 && stock !== null && ['produced','released','held','rework','scrap'].every(k => stock[k] === s.batch[k]) && s.outbox.every(x => ['acked','superseded'].includes(x.status));
 }
-export function late(s) { return Boolean(s.plan && s.plan.end > s.orders[1].due); }
+export function late(s) { return Math.max(s.plan?.end || 0, s.orders[1].readyAt || 0) > s.orders[1].due; }
 export function metrics(s) { return { orders: s.orders.length, blocked: s.batch.held + s.batch.rework, atRisk: canShip(s) && !late(s) ? 0 : 1, shortage: shortage(s), unsynced: s.outbox.filter(x => !['acked', 'superseded'].includes(x.status)).length }; }
 export function report(s, { role, expectedVersion, quantity, reason }) {
   allow(role, 'report'); version(s, expectedVersion); qty(quantity);
@@ -72,16 +72,17 @@ export function decide(s, { role, expectedVersion, release, rework, scrap, reaso
   event(n, 'QUALITY_DECIDED', `${release} vrij, ${rework} herwerk, ${scrap} afkeur. ${reason.trim()}`, role); stockEvent(n); return assertState(n);
 }
 export function firstGap(machine, jobs, duration, earliest = 720) {
+  if (!Number.isFinite(duration) || duration <= 0) fail('INVALID_DURATION', 'Een tijdvak moet een positieve eindige duur hebben.');
   let cursor = Math.max(machine.start, earliest);
   for (const j of jobs.filter(j => j.machine === machine.id).sort((a, b) => a.start - b.start)) {
     if (j.end <= cursor) continue;
-    if (cursor + duration <= j.start) return cursor;
+    if (cursor + duration <= Math.min(j.start, machine.end)) return cursor;
     cursor = Math.max(cursor, j.end);
   }
   return cursor + duration <= machine.end ? cursor : null;
 }
 export function alternatives(s) {
-  if (s.issue.status === 'open' || shortage(s) === 0 || s.plan?.status === 'committed') return [];
+  if (s.issue.status === 'open' || shortage(s) === 0 || ['committed', 'awaiting-quality'].includes(s.plan?.status)) return [];
   const results = [];
   for (const strategy of (s.batch.rework ? ['recover', 'replace'] : ['replace'])) {
     for (const machine of s.machines) {
@@ -101,8 +102,9 @@ export function alternatives(s) {
 export function commitPlan(s, { role, expectedVersion, option, reason }) {
   allow(role, 'commitPlan'); version(s, expectedVersion);
   if (!reason?.trim()) fail('REASON_REQUIRED', 'Motiveer de keuze voor het herstelplan.');
-  const fresh = alternatives(s).find(x => x.id === option.id);
-  if (!fresh || option.planVersion !== s.planVersion || option.stateVersion !== s.version || JSON.stringify(option) !== JSON.stringify(fresh)) fail('STALE_PLAN', 'Dit voorstel is verouderd of gewijzigd; vergelijk opnieuw.');
+  if (['committed','awaiting-quality'].includes(s.plan?.status)) fail('RECOVERY_ACTIVE', 'Rond het actieve herstel en de herkeuring af vóór een nieuw plan.');
+  const fresh = alternatives(s).find(x => x.id === option?.id);
+  if (!fresh || option.planVersion !== s.planVersion || option.stateVersion !== s.version || Object.keys(option).length !== Object.keys(fresh).length || !Object.keys(fresh).every(k => option[k] === fresh[k])) fail('STALE_PLAN', 'Dit voorstel is verouderd of gewijzigd; vergelijk opnieuw.');
   const n = structuredClone(s); const id = `RP-${n.nextJob++}`;
   n.jobs.push({ id, machine: fresh.machine, start: fresh.start, end: fresh.end, order: 'SO-1042', type: 'recovery', status: 'scheduled', quantity: fresh.production + fresh.recovery });
   n.plan = { ...fresh, jobId: id, status: 'committed', reason: reason.trim() }; n.planVersion += 1;
@@ -124,17 +126,23 @@ export function releaseRework(s, { role, expectedVersion, reason }) {
   if (!reason?.trim()) fail('REASON_REQUIRED', 'Controlebevinding en vrijgavereden zijn verplicht.');
   const n = structuredClone(s); const p = n.plan;
   n.batch.held -= p.production; n.batch.rework -= p.recovery; n.batch.released += p.production + p.recovery;
+  n.orders[1].readyAt = Math.max(n.orders[1].readyAt || 0, p.end);
   p.status = 'complete'; n.issue.status = n.batch.rework ? 'rework' : 'closed';
   const child = n.childLots.find(x => x.id === `${n.batch.id}-${p.jobId}`); if (child) child.status = 'released';
   event(n, 'RECOVERY_RELEASED', reason.trim(), role); stockEvent(n); return assertState(n);
 }
 export function receive(receiver, message) {
   const r = structuredClone(receiver); const p = message.payload;
+  const fields = ['batchId','version','produced','released','held','rework','scrap'];
+  if (!p || typeof p !== 'object' || Object.keys(p).length !== fields.length || !fields.every(f => Object.hasOwn(p,f))) fail('INVALID_PAYLOAD', 'Het bericht moet exact de afgesproken voorraadvelden bevatten.');
   for (const f of ['version', 'produced', 'released', 'held', 'rework', 'scrap']) qty(p[f]);
   if (p.batchId !== 'B-2401' || message.key !== `${p.batchId}:${p.version}` || p.produced !== p.released + p.held + p.rework + p.scrap) fail('INVALID_PAYLOAD', 'Ontvangst geweigerd: berichtbalans of sleutel ongeldig.');
-  const fingerprint = JSON.stringify(p);
+  // Field order in JSON is not business content. Fingerprint the explicit contract fields.
+  const fingerprint = JSON.stringify(fields.map(f => p[f]));
   if (Object.hasOwn(r.receipts, message.key)) {
-    if (r.receipts[message.key] !== fingerprint) fail('IDEMPOTENCY_CONFLICT', 'Dezelfde sleutel heeft een andere inhoud.');
+    let stored = r.receipts[message.key];
+    try { const legacy = JSON.parse(stored); if (!Array.isArray(legacy)) stored = JSON.stringify(fields.map(f => legacy[f])); } catch { fail('INVALID_PAYLOAD', 'Ontvangstregister ongeldig.'); }
+    if (stored !== fingerprint) fail('IDEMPOTENCY_CONFLICT', 'Dezelfde sleutel heeft een andere inhoud.');
     return { receiver: r, duplicate: true, stale: false };
   }
   r.receipts[message.key] = fingerprint;

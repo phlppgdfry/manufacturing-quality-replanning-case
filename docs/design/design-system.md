@@ -9,3 +9,6 @@ Boven-de-vouw-copy: Batchline; Overzicht; Productieplanning; Kwaliteit; ERP & au
 Afwijkingen om correcte inhoud te bewaren: datum 17 oktober 2026 zonder de onjuiste weekdag uit het concept; voorbeeldhoeveelheid SO-1042 is 100, niet het inconsistente 80 uit het concept; vijf basistaken uit het rekenmodel, geen fictieve extra UI-taken. Tijdas eindigt op 17:00. Responsief verandert de rail in horizontale navigatie en stapelen hoofdvlak/inspectie. De casepagina gebruikt dezelfde typografie, lijnen en kleurtoon met open leeskolommen.
 
 Interacties: alle hoofdnavigatie, rolwissel, dialoogvalidatie, capaciteitskeuze, gereedmelding, herkeuring, ERP-fouten/replay, reset en tour werken. Geen browser-default typografie op controls. Tabellen scrollen binnen hun paneel op mobiel; de pagina zelf hoort niet horizontaal te scrollen.
+
+
+Publicatieverfijning: de demonstratierol is bewust naar de kop verplaatst, zodat de bevoegde rol vóór een actie zichtbaar is. De contentbibliotheek krijgt semantische lijsten, kolomkoppen, inhoudsankers en inline SVG-diagrammen. Dit zijn functionele en toegankelijkheidsverbeteringen binnen hetzelfde kleur- en typografiesysteem.

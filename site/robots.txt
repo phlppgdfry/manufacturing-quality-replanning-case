@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://phlppgdfry.github.io/manufacturing-quality-replanning-case/sitemap.xml
