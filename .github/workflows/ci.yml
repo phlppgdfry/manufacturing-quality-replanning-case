@@ -1,0 +1,25 @@
+name: Validate portfolio
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run build
+      - run: git diff --exit-code
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - name: Browser acceptance
+        run: |
+          python3 -m http.server 8078 --directory site --bind 127.0.0.1 &
+          npm run test:ui

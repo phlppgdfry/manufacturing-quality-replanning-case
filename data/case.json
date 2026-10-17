@@ -1,0 +1,122 @@
+{
+  "title": "Batchline",
+  "date": "2026-10-17",
+  "fictional": true,
+  "organization": "Fictieve fabrikant van metalen dak- en gevelpanelen",
+  "scope": {
+    "sites": 1,
+    "lines": 2,
+    "orderCount": 3,
+    "originalQuantity": 100,
+    "initialReleased": 60,
+    "initialHeld": 40,
+    "demand": 100,
+    "decision": {
+      "release": 10,
+      "rework": 20,
+      "scrap": 10
+    },
+    "units": "gehele m²"
+  },
+  "requirements": [
+    {
+      "id": "FR-01",
+      "title": "Kwaliteitsafwijking registreren",
+      "requirement": "Blokkeer een positieve hoeveelheid binnen de beschikbare voorraad; leg reden, partij en versie vast.",
+      "rules": "R-01",
+      "uat": "UAT-01",
+      "kpi": "KPI-01",
+      "path": "docs/02-requirements/functional-specification.md"
+    },
+    {
+      "id": "FR-02",
+      "title": "Geblokkeerde hoeveelheid beoordelen",
+      "requirement": "Alleen Kwaliteit verdeelt de volledige blokkade in vrijgave, herwerk en afkeur met een reden.",
+      "rules": "R-02,R-03",
+      "uat": "UAT-02,UAT-03",
+      "kpi": "KPI-01",
+      "path": "docs/02-requirements/functional-specification.md"
+    },
+    {
+      "id": "FR-03",
+      "title": "Leverimpact bepalen",
+      "requirement": "Bereken tekort uitsluitend uit lokaal vrijgegeven product; toon ERP-bevestiging afzonderlijk.",
+      "rules": "R-04,R-10",
+      "uat": "UAT-04",
+      "kpi": "KPI-02",
+      "path": "docs/04-solution/data-model.md"
+    },
+    {
+      "id": "FR-04",
+      "title": "Herstelopties vergelijken en bevestigen",
+      "requirement": "Toon geschikte lijnen met vrije capaciteit, omstel- en controletijd; controleer versies opnieuw bij bevestiging.",
+      "rules": "R-05,R-06",
+      "uat": "UAT-05,UAT-06,UAT-07",
+      "kpi": "KPI-02",
+      "path": "docs/04-solution/planning.md"
+    },
+    {
+      "id": "FR-05",
+      "title": "Herstel uitvoeren en opnieuw keuren",
+      "requirement": "Operator meldt gereed; Kwaliteit geeft pas daarna de herstelde en vervangende hoeveelheid vrij.",
+      "rules": "R-07",
+      "uat": "UAT-08,UAT-09",
+      "kpi": "KPI-01",
+      "path": "docs/03-processes/process-design.md"
+    },
+    {
+      "id": "FR-06",
+      "title": "Voorraadstatus veilig overdragen",
+      "requirement": "Bewaar berichten in outbox; ontvang met unieke sleutel en inhoudscontrole; oude versies mogen actuele voorraad niet overschrijven.",
+      "rules": "R-08,R-09",
+      "uat": "UAT-10,UAT-11,UAT-12",
+      "kpi": "KPI-03",
+      "path": "docs/05-erp/integration-design.md"
+    },
+    {
+      "id": "FR-07",
+      "title": "ERP-storing herstellen",
+      "requirement": "Na drie mislukte pogingen dead-letter; alleen Integratie mag na diagnose herstarten.",
+      "rules": "R-11",
+      "uat": "UAT-13",
+      "kpi": "KPI-03",
+      "path": "docs/08-operations/runbook.md"
+    },
+    {
+      "id": "FR-08",
+      "title": "Besluiten herleiden",
+      "requirement": "Leg actorrol, actie, versie, planreferentie en berichtsleutel vast; productie vereist append-only serveraudit.",
+      "rules": "R-12",
+      "uat": "UAT-14",
+      "kpi": "KPI-04",
+      "path": "docs/04-solution/security.md"
+    },
+    {
+      "id": "FR-09",
+      "title": "Beheerste pilot en feedback",
+      "requirement": "Bereid businessacceptatie, training, go/no-go, rollback en benefits review voor.",
+      "rules": "R-13",
+      "uat": "UAT-15",
+      "kpi": "KPI-04",
+      "path": "docs/07-delivery/rollout.md"
+    }
+  ],
+  "businessCase": {
+    "eventsPerMonth": 18,
+    "minutesSavedPerEvent": 25,
+    "hourlyCost": 48,
+    "months": 12,
+    "adoption": 0.7,
+    "implementationDays": 12,
+    "dayRate": 650,
+    "annualSupport": 1200
+  },
+  "limitations": [
+    "Fictieve organisatie en data",
+    "Geen SAP-runtime",
+    "Geen machinebesturing",
+    "Geen echte authenticatie of servertransacties",
+    "Geen uitgevoerde eindgebruikers-UAT of uitrol",
+    "Eigenaarschap kandidaat niet getoetst"
+  ]
+}

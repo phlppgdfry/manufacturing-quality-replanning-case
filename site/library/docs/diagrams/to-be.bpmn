@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_to-be" targetNamespace="https://batchline.example/portfolio">
+  <bpmn:process id="Process_to-be" isExecutable="false" name="to-be">
+    <bpmn:laneSet id="LaneSet_to-be">
+      <bpmn:lane id="to-be_lane_Operator" name="Operator">
+        <bpmn:flowNodeRef>to-be_s</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_n</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_r</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="to-be_lane_Kwaliteit" name="Kwaliteit">
+        <bpmn:flowNodeRef>to-be_q</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_k</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="to-be_lane_Planning" name="Planning">
+        <bpmn:flowNodeRef>to-be_p</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_g</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_c</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="to-be_lane_Integratie" name="Integratie">
+        <bpmn:flowNodeRef>to-be_e</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_h</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_d</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>to-be_z</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="to-be_s" name="Afwijking">
+      <bpmn:outgoing>to-be_flow_0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="to-be_n" name="Blokkade melden">
+      <bpmn:incoming>to-be_flow_0</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="to-be_q" name="Hoeveelheid beoordelen">
+      <bpmn:incoming>to-be_flow_1</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="to-be_p" name="Opties vergelijken">
+      <bpmn:incoming>to-be_flow_2</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="to-be_g" name="Plan haalbaar?">
+      <bpmn:incoming>to-be_flow_3</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_4</bpmn:outgoing>
+      <bpmn:outgoing>to-be_flow_6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="to-be_a" name="Leverafspraak afstemmen">
+      <bpmn:incoming>to-be_flow_4</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="to-be_c" name="Plan bevestigen">
+      <bpmn:incoming>to-be_flow_5</bpmn:incoming>
+      <bpmn:incoming>to-be_flow_6</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="to-be_r" name="Herstel uitvoeren">
+      <bpmn:incoming>to-be_flow_7</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="to-be_k" name="Herstel controleren">
+      <bpmn:incoming>to-be_flow_8</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_9</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="to-be_e" name="ERP overdragen">
+      <bpmn:incoming>to-be_flow_9</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_10</bpmn:outgoing>
+      <bpmn:incoming>to-be_flow_12</bpmn:incoming>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="to-be_h" name="Bevestigd?">
+      <bpmn:incoming>to-be_flow_10</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_11</bpmn:outgoing>
+      <bpmn:outgoing>to-be_flow_13</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="to-be_d" name="Diagnose en replay">
+      <bpmn:incoming>to-be_flow_11</bpmn:incoming>
+      <bpmn:outgoing>to-be_flow_12</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="to-be_z" name="Gereconcilieerd">
+      <bpmn:incoming>to-be_flow_13</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="to-be_flow_0" sourceRef="to-be_s" targetRef="to-be_n" />
+    <bpmn:sequenceFlow id="to-be_flow_1" sourceRef="to-be_n" targetRef="to-be_q" />
+    <bpmn:sequenceFlow id="to-be_flow_2" sourceRef="to-be_q" targetRef="to-be_p" />
+    <bpmn:sequenceFlow id="to-be_flow_3" sourceRef="to-be_p" targetRef="to-be_g" />
+    <bpmn:sequenceFlow id="to-be_flow_4" sourceRef="to-be_g" targetRef="to-be_a" name="te laat" />
+    <bpmn:sequenceFlow id="to-be_flow_5" sourceRef="to-be_a" targetRef="to-be_c" name="afgestemd" />
+    <bpmn:sequenceFlow id="to-be_flow_6" sourceRef="to-be_g" targetRef="to-be_c" name="tijdig" />
+    <bpmn:sequenceFlow id="to-be_flow_7" sourceRef="to-be_c" targetRef="to-be_r" />
+    <bpmn:sequenceFlow id="to-be_flow_8" sourceRef="to-be_r" targetRef="to-be_k" />
+    <bpmn:sequenceFlow id="to-be_flow_9" sourceRef="to-be_k" targetRef="to-be_e" />
+    <bpmn:sequenceFlow id="to-be_flow_10" sourceRef="to-be_e" targetRef="to-be_h" />
+    <bpmn:sequenceFlow id="to-be_flow_11" sourceRef="to-be_h" targetRef="to-be_d" name="nee" />
+    <bpmn:sequenceFlow id="to-be_flow_12" sourceRef="to-be_d" targetRef="to-be_e" name="zelfde sleutel" />
+    <bpmn:sequenceFlow id="to-be_flow_13" sourceRef="to-be_h" targetRef="to-be_z" name="ja" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="to-be_diagram">
+    <bpmndi:BPMNPlane id="to-be_plane" bpmnElement="Process_to-be">
+      <bpmndi:BPMNShape id="to-be_lane_di_Operator" bpmnElement="to-be_lane_Operator" isHorizontal="true">
+        <dc:Bounds x="0" y="0" width="2225" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_lane_di_Kwaliteit" bpmnElement="to-be_lane_Kwaliteit" isHorizontal="true">
+        <dc:Bounds x="0" y="150" width="2225" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_lane_di_Planning" bpmnElement="to-be_lane_Planning" isHorizontal="true">
+        <dc:Bounds x="0" y="300" width="2225" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_lane_di_Integratie" bpmnElement="to-be_lane_Integratie" isHorizontal="true">
+        <dc:Bounds x="0" y="450" width="2225" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_s" bpmnElement="to-be_s">
+        <dc:Bounds x="70" y="48" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_n" bpmnElement="to-be_n">
+        <dc:Bounds x="235" y="48" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_q" bpmnElement="to-be_q">
+        <dc:Bounds x="400" y="198" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_p" bpmnElement="to-be_p">
+        <dc:Bounds x="565" y="348" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_g" bpmnElement="to-be_g">
+        <dc:Bounds x="730" y="348" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_a" bpmnElement="to-be_a">
+        <dc:Bounds x="895" y="348" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_c" bpmnElement="to-be_c">
+        <dc:Bounds x="1060" y="348" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_r" bpmnElement="to-be_r">
+        <dc:Bounds x="1225" y="48" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_k" bpmnElement="to-be_k">
+        <dc:Bounds x="1390" y="198" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_e" bpmnElement="to-be_e">
+        <dc:Bounds x="1555" y="498" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_h" bpmnElement="to-be_h">
+        <dc:Bounds x="1720" y="498" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_d" bpmnElement="to-be_d">
+        <dc:Bounds x="1885" y="498" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="to-be_di_z" bpmnElement="to-be_z">
+        <dc:Bounds x="2050" y="498" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="to-be_edge_0" bpmnElement="to-be_flow_0">
+        <di:waypoint x="106" y="66.0" />
+        <di:waypoint x="235" y="78.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_1" bpmnElement="to-be_flow_1">
+        <di:waypoint x="365" y="78.0" />
+        <di:waypoint x="400" y="228.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_2" bpmnElement="to-be_flow_2">
+        <di:waypoint x="530" y="228.0" />
+        <di:waypoint x="565" y="378.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_3" bpmnElement="to-be_flow_3">
+        <di:waypoint x="695" y="378.0" />
+        <di:waypoint x="730" y="373.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_4" bpmnElement="to-be_flow_4">
+        <di:waypoint x="780" y="373.0" />
+        <di:waypoint x="895" y="378.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_5" bpmnElement="to-be_flow_5">
+        <di:waypoint x="1025" y="378.0" />
+        <di:waypoint x="1060" y="378.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_6" bpmnElement="to-be_flow_6">
+        <di:waypoint x="780" y="373.0" />
+        <di:waypoint x="1060" y="378.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_7" bpmnElement="to-be_flow_7">
+        <di:waypoint x="1190" y="378.0" />
+        <di:waypoint x="1225" y="78.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_8" bpmnElement="to-be_flow_8">
+        <di:waypoint x="1355" y="78.0" />
+        <di:waypoint x="1390" y="228.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_9" bpmnElement="to-be_flow_9">
+        <di:waypoint x="1520" y="228.0" />
+        <di:waypoint x="1555" y="528.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_10" bpmnElement="to-be_flow_10">
+        <di:waypoint x="1685" y="528.0" />
+        <di:waypoint x="1720" y="523.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_11" bpmnElement="to-be_flow_11">
+        <di:waypoint x="1770" y="523.0" />
+        <di:waypoint x="1885" y="528.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_12" bpmnElement="to-be_flow_12">
+        <di:waypoint x="2015" y="528.0" />
+        <di:waypoint x="1555" y="528.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="to-be_edge_13" bpmnElement="to-be_flow_13">
+        <di:waypoint x="1770" y="523.0" />
+        <di:waypoint x="2050" y="516.0" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

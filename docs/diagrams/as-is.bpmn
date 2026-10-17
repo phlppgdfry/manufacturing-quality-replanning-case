@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_as-is" targetNamespace="https://batchline.example/portfolio">
+  <bpmn:process id="Process_as-is" isExecutable="false" name="as-is">
+    <bpmn:laneSet id="LaneSet_as-is">
+      <bpmn:lane id="as-is_lane_Operator" name="Operator">
+        <bpmn:flowNodeRef>as-is_s</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>as-is_n</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="as-is_lane_Kwaliteit" name="Kwaliteit">
+        <bpmn:flowNodeRef>as-is_q</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="as-is_lane_Planning" name="Planning">
+        <bpmn:flowNodeRef>as-is_p</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>as-is_r</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="as-is_lane_Integratie" name="Integratie">
+        <bpmn:flowNodeRef>as-is_e</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>as-is_z</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="as-is_s" name="Afwijking">
+      <bpmn:outgoing>as-is_flow_0</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="as-is_n" name="Mondeling melden">
+      <bpmn:incoming>as-is_flow_0</bpmn:incoming>
+      <bpmn:outgoing>as-is_flow_1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="as-is_q" name="Los beoordelen">
+      <bpmn:incoming>as-is_flow_1</bpmn:incoming>
+      <bpmn:outgoing>as-is_flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="as-is_p" name="Status navragen">
+      <bpmn:incoming>as-is_flow_2</bpmn:incoming>
+      <bpmn:outgoing>as-is_flow_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="as-is_r" name="Herstel inschuiven">
+      <bpmn:incoming>as-is_flow_3</bpmn:incoming>
+      <bpmn:outgoing>as-is_flow_4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="as-is_e" name="ERP bijwerken">
+      <bpmn:incoming>as-is_flow_4</bpmn:incoming>
+      <bpmn:outgoing>as-is_flow_5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="as-is_z" name="Afgerond">
+      <bpmn:incoming>as-is_flow_5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="as-is_flow_0" sourceRef="as-is_s" targetRef="as-is_n" />
+    <bpmn:sequenceFlow id="as-is_flow_1" sourceRef="as-is_n" targetRef="as-is_q" />
+    <bpmn:sequenceFlow id="as-is_flow_2" sourceRef="as-is_q" targetRef="as-is_p" />
+    <bpmn:sequenceFlow id="as-is_flow_3" sourceRef="as-is_p" targetRef="as-is_r" />
+    <bpmn:sequenceFlow id="as-is_flow_4" sourceRef="as-is_r" targetRef="as-is_e" />
+    <bpmn:sequenceFlow id="as-is_flow_5" sourceRef="as-is_e" targetRef="as-is_z" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="as-is_diagram">
+    <bpmndi:BPMNPlane id="as-is_plane" bpmnElement="Process_as-is">
+      <bpmndi:BPMNShape id="as-is_lane_di_Operator" bpmnElement="as-is_lane_Operator" isHorizontal="true">
+        <dc:Bounds x="0" y="0" width="1235" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_lane_di_Kwaliteit" bpmnElement="as-is_lane_Kwaliteit" isHorizontal="true">
+        <dc:Bounds x="0" y="150" width="1235" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_lane_di_Planning" bpmnElement="as-is_lane_Planning" isHorizontal="true">
+        <dc:Bounds x="0" y="300" width="1235" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_lane_di_Integratie" bpmnElement="as-is_lane_Integratie" isHorizontal="true">
+        <dc:Bounds x="0" y="450" width="1235" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_s" bpmnElement="as-is_s">
+        <dc:Bounds x="70" y="48" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_n" bpmnElement="as-is_n">
+        <dc:Bounds x="235" y="48" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_q" bpmnElement="as-is_q">
+        <dc:Bounds x="400" y="198" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_p" bpmnElement="as-is_p">
+        <dc:Bounds x="565" y="348" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_r" bpmnElement="as-is_r">
+        <dc:Bounds x="730" y="348" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_e" bpmnElement="as-is_e">
+        <dc:Bounds x="895" y="498" width="130" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="as-is_di_z" bpmnElement="as-is_z">
+        <dc:Bounds x="1060" y="498" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="as-is_edge_0" bpmnElement="as-is_flow_0">
+        <di:waypoint x="106" y="66.0" />
+        <di:waypoint x="235" y="78.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="as-is_edge_1" bpmnElement="as-is_flow_1">
+        <di:waypoint x="365" y="78.0" />
+        <di:waypoint x="400" y="228.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="as-is_edge_2" bpmnElement="as-is_flow_2">
+        <di:waypoint x="530" y="228.0" />
+        <di:waypoint x="565" y="378.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="as-is_edge_3" bpmnElement="as-is_flow_3">
+        <di:waypoint x="695" y="378.0" />
+        <di:waypoint x="730" y="378.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="as-is_edge_4" bpmnElement="as-is_flow_4">
+        <di:waypoint x="860" y="378.0" />
+        <di:waypoint x="895" y="528.0" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="as-is_edge_5" bpmnElement="as-is_flow_5">
+        <di:waypoint x="1025" y="528.0" />
+        <di:waypoint x="1060" y="516.0" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

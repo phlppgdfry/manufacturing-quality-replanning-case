@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-17T01:28:18.976Z",
+  "url": "http://127.0.0.1:8078/",
+  "tool": "Playwright Chromium; IAB unavailable (Browser is not available: iab)",
+  "viewports": [
+    "1536x1024",
+    "375x812"
+  ],
+  "checks": [
+    "page identity",
+    "no runtime console errors",
+    "wrong role rejected",
+    "quantity sum rejected",
+    "quality 10/20/10",
+    "three capacity options and late outcome",
+    "planner commit",
+    "operator completion",
+    "quality reinspection",
+    "lost acknowledgement duplicate",
+    "dead-letter diagnosed replay",
+    "ERP reconciliation",
+    "late delivery remains visible",
+    "reload persistence",
+    "mobile no document overflow",
+    "eight tour steps",
+    "tour keyboard and close",
+    "case page desktop and mobile"
+  ],
+  "errors": []
+}

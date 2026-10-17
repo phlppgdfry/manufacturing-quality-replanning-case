@@ -1,0 +1,29 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>User stories en refinementbaseline — Batchline</title><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1>User stories en refinementbaseline</h1>
+<p>Gegenereerd uit de canonieke catalogus. PO prioriteert, team schat; de analist verduidelijkt uitzonderingen.</p>
+<h2>US-01 — Kwaliteitsafwijking registreren</h2>
+<p>Als operator wil ik blokkeer een positieve hoeveelheid binnen de beschikbare voorraad; leg reden, partij en versie vast. zodat de partij direct herleidbaar geblokkeerd is.</p>
+<p>Acceptatie: UAT-01; regels R-01; meetpunt KPI-01. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-02 — Geblokkeerde hoeveelheid beoordelen</h2>
+<p>Als Quality lead wil ik alleen Kwaliteit verdeelt de volledige blokkade in vrijgave, herwerk en afkeur met een reden. zodat geen hoeveelheid verdwijnt en alleen bevoegden vrijgeven.</p>
+<p>Acceptatie: UAT-02,UAT-03; regels R-02,R-03; meetpunt KPI-01. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-03 — Leverimpact bepalen</h2>
+<p>Als planner wil ik bereken tekort uitsluitend uit lokaal vrijgegeven product; toon ERP-bevestiging afzonderlijk. zodat ik geen fictief beschikbare voorraad beloof.</p>
+<p>Acceptatie: UAT-04; regels R-04,R-10; meetpunt KPI-02. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-04 — Herstelopties vergelijken en bevestigen</h2>
+<p>Als planner wil ik toon geschikte lijnen met vrije capaciteit, omstel- en controletijd; controleer versies opnieuw bij bevestiging. zodat ik een uitvoerbaar plan kan verdedigen.</p>
+<p>Acceptatie: UAT-05,UAT-06,UAT-07; regels R-05,R-06; meetpunt KPI-02. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-05 — Herstel uitvoeren en opnieuw keuren</h2>
+<p>Als operator en Quality lead wil ik operator meldt gereed; Kwaliteit geeft pas daarna de herstelde en vervangende hoeveelheid vrij. zodat gereedmelding niet met goedkeuring wordt verward.</p>
+<p>Acceptatie: UAT-08,UAT-09; regels R-07; meetpunt KPI-01. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-06 — Voorraadstatus veilig overdragen</h2>
+<p>Als integratiebeheerder wil ik bewaar berichten in outbox; ontvang met unieke sleutel en inhoudscontrole; oude versies mogen actuele voorraad niet overschrijven. zodat onbekende ontvangst geen dubbele verwerking veroorzaakt.</p>
+<p>Acceptatie: UAT-10,UAT-11,UAT-12; regels R-08,R-09; meetpunt KPI-03. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-07 — ERP-storing herstellen</h2>
+<p>Als integratiebeheerder wil ik na drie mislukte pogingen dead-letter; alleen Integratie mag na diagnose herstarten. zodat fouten zichtbaar en beheersbaar blijven.</p>
+<p>Acceptatie: UAT-13; regels R-11; meetpunt KPI-03. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-08 — Besluiten herleiden</h2>
+<p>Als auditor wil ik leg actorrol, actie, versie, planreferentie en berichtsleutel vast; productie vereist append-only serveraudit. zodat ik besluiten en effecten kan reconstrueren.</p>
+<p>Acceptatie: UAT-14; regels R-12; meetpunt KPI-04. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p>
+<h2>US-09 — Beheerste pilot en feedback</h2>
+<p>Als Operations owner wil ik bereid businessacceptatie, training, go/no-go, rollback en benefits review voor. zodat technische voltooiing geen onbeheerste uitrol wordt.</p>
+<p>Acceptatie: UAT-15; regels R-13; meetpunt KPI-04. Must-have behalve FR-09 die releasevoorwaarde is. Exacte Given/When/Then-voorbeelden staan in <a href="../06-validation/test-strategy.html">teststrategie</a>. Geen schattingen in story points zonder teamreview.</p><footer class="footer">Onafhankelijke portfoliocase · fictieve organisatie · ERP gesimuleerd</footer></main></body></html>

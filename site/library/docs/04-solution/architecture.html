@@ -1,0 +1,23 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oplossingsarchitectuur en standaard-eerst besluit — Batchline</title><link rel="stylesheet" href="../../../assets/style.css"><style>pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f6f7;padding:18px;font-size:12px}td,th{min-width:100px}code{overflow-wrap:anywhere}h2{margin-top:32px}.list-item{padding-left:16px}h1{font-size:36px}</style></head><body><main class="reading"><a class="brand" href="../../../index.html">Batchline</a><nav class="doc-nav"><a href="../../../case.html">Case & bewijs</a><a href="../../../index.html?tour">Demo</a></nav><h1>Oplossingsarchitectuur en standaard-eerst besluit</h1>
+<p>Voor business, ERP-consultant en technische lead. Dit document onderscheidt de werkende browserdemo van het doelontwerp dat eerst op een ERP-fit-gap moet worden getoetst.</p>
+<h2>Business- en systeemcontext</h2>
+<p>Kwaliteit beslist over conformiteit. Planning beslist over capaciteit. Sales beslist over een gewijzigde klantbelofte. ERP beheert administratieve orders en voorraad. De workbench verbindt het signaal, de afweging en het bevestigingsspoor.</p>
+<pre><code>flowchart LR
+ Operator --&gt; Werkbank
+ Kwaliteit --&gt; Werkbank
+ Planning --&gt; Werkbank
+ Werkbank --&gt; Domeinservice
+ Domeinservice --&gt; DB[(Transacties en outbox)]
+ DB --&gt; Worker
+ Worker --&gt; Facade[ERP-adapter]
+ Facade --&gt; ERP[ERP: orders, kwaliteit en voorraad]
+ ERP --&gt; Reconciliatie
+ Reconciliatie --&gt; Werkbank</code></pre>
+<h2>Prototype versus doel</h2>
+<div class="table-scroll"><table><tr><th>Laag</th><th>Hier werkend</th><th>Productievoorwaarde</th></tr><tr><td>Presentatie</td><td>Statische HTML/CSS, ES-modules en lokale UI-state</td><td>Enterprise identity, route-/sessiebeveiliging</td></tr><tr><td>Domein</td><td>Zuivere functies, rollencheck, versiecheck, invarianten</td><td>Servertransactie, concurrencycontrole en authoritative reads</td></tr><tr><td>Opslag</td><td>localStorage per browser</td><td>Relationele DB, back-up en retentie</td></tr><tr><td>Integratie</td><td>Outbox en apart ontvangstregister in dezelfde browser</td><td>Duurzame worker, netwerk, ERP-sandbox en reconciliatietaak</td></tr><tr><td>Audit</td><td>Herleidbare sequence en versie, lokaal wijzigbaar</td><td>Append-only opslag met actor-ID, timestamp en correlation-ID</td></tr></table></div>
+<p>Geen framework is nodig voor dit statische analistenportfolio. Domeinregels zitten apart van rendering. Het eigen ERP-contract is een facadeontwerp, geen nagebootste officiële SAP-endpoint. Waar standaard ERP-schermen en kwaliteitsprocessen volstaan, heeft configuratie voorrang boven een nieuwe applicatie.</p>
+<h2>Eerste technische spike</h2>
+<p>ERP-consultant toont een echte inspectie met gedeeltelijke bestemming. Analist volgt één order, keuringsresultaat, gebruiksbesluit en boekingsdocument. Team bewijst daarna een dubbel bericht, een verloren bevestiging en een oudere versie in sandbox. Zonder die spike geen besluit om de workbench te bouwen.</p>
+<h2>Drie doorslaggevende keuzes</h2>
+<p><a href="../adr/01-quality-ownership.html">ADR-01: functiescheiding</a>; <a href="../adr/03-planning.html">ADR-03: verklaarbare capaciteit</a>; <a href="../adr/04-erp-delivery.html">ADR-04: versiegebonden overdracht</a>. Implementatie blijft één service met relationele opslag; geen microservices of machinekoppeling nodig voor de gekozen scope.</p>
+<p>Vorige: <a href="../03-processes/process-design.html">Proces</a>. Volgende: <a href="data-model.html">Data</a>.</p><footer class="footer">Onafhankelijke portfoliocase · fictieve organisatie · ERP gesimuleerd</footer></main></body></html>

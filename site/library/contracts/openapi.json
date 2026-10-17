@@ -1,0 +1,216 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Batchline ERP facade \u2014 design contract",
+    "version": "1.0.0",
+    "description": "Fictional target interface. Not a SAP API. No HTTP backend is running."
+  },
+  "servers": [
+    {
+      "url": "https://batchline.example/api",
+      "description": "Example domain, no service"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/stock-snapshots": {
+      "post": {
+        "operationId": "receiveSnapshot",
+        "summary": "Receive a complete dossier snapshot idempotently",
+        "description": "Quantity conservation and version ordering are mandatory. Adapter must use supported ERP business transactions, not blindly overwrite stock.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-Correlation-ID",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockSnapshot"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Accepted, duplicate or superseded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "version"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "accepted",
+                        "duplicate",
+                        "superseded"
+                      ]
+                    },
+                    "version": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid payload or quantity balance"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Permission denied"
+          },
+          "409": {
+            "description": "Idempotency conflict"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Temporary failure; retry same key"
+          }
+        }
+      }
+    },
+    "/recovery-plans": {
+      "post": {
+        "operationId": "commitRecoveryPlan",
+        "summary": "Commit a recovery proposal with version check",
+        "parameters": [
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Quoted dossier and plan version ETag"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "optionId",
+                  "reason"
+                ],
+                "properties": {
+                  "optionId": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Plan committed"
+          },
+          "400": {
+            "description": "Invalid proposal"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Planner required"
+          },
+          "409": {
+            "description": "Stale version"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "StockSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "batchId",
+          "version",
+          "produced",
+          "released",
+          "held",
+          "rework",
+          "scrap"
+        ],
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "produced": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "released": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "held": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rework": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "scrap": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "manufacturing-quality-replanning-case",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent functional-analysis portfolio: quality holds, capacity planning and ERP reconciliation",
+  "scripts": {
+    "dev": "python3 -m http.server 8078 --directory site --bind 127.0.0.1",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && python3 scripts/check-links.py && node scripts/check-artifacts.mjs",
+    "test:ui": "node scripts/browser-check.mjs",
+    "build": "node scripts/build-docs.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "^13.1.0",
+    "@playwright/test": "^1.64.1",
+    "bpmn-moddle": "^10.3.1"
+  }
+}
